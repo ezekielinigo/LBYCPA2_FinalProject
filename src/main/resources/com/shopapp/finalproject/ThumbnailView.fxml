@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.ThumbnailViewController">
+   <children>
+      <ImageView fx:id="image" fitHeight="110.0" fitWidth="140.0" layoutX="5.0" layoutY="4.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../images/products/sampleProduct.png" />
+         </image></ImageView>
+      <Label fx:id="nameLabel" layoutX="3.0" layoutY="114.0" text="Name">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="priceLabel" layoutX="3.0" layoutY="131.0" text="Price" />
+   </children>
+</AnchorPane>
