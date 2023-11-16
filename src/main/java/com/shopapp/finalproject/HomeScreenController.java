@@ -26,7 +26,9 @@ public class HomeScreenController extends BaseController implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GlobalData g = GlobalData.getInstance();
-        for (Product product : g.getGlobalProducts()) {
+
+        g.setRelevantResults();
+        for (Product product : g.getRelevantProducts()) {
             try {
                 // load a new thumbnail view for each product
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ThumbnailView.fxml"));
@@ -41,6 +43,26 @@ public class HomeScreenController extends BaseController implements Initializabl
 
                     // set a click handler for the product detail view
                     thumbnailView.setOnMouseClicked(e -> gotoProductDetail(product));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        for (Seller seller : g.getRelevantSellers()) {
+            try {
+                // load a new thumbnail view for each product
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ThumbnailView.fxml"));
+                AnchorPane thumbnailView = loader.load();
+                ThumbnailViewController controller = loader.getController();
+                controller.setSeller(seller);
+
+                Point2D nextPosition = getNextAvailablePosition(productGrid);
+                if (nextPosition.getX() != -1 && nextPosition.getY() != -1) {
+                    // add the new thumbnailView to the grid
+                    productGrid.add(thumbnailView, (int) nextPosition.getX(), (int) nextPosition.getY());
+
+                    // set a click handler for the product detail view
+                    thumbnailView.setOnMouseClicked(e -> gotoSellerDetail(seller));
                 }
             } catch (IOException e) {
                 e.printStackTrace();

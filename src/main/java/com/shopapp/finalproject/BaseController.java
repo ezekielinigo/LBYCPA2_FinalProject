@@ -19,6 +19,10 @@ public class BaseController {
         // insert code here
     }
 
+    protected void gotoSellerDetail(Seller seller) {
+        // insert code here
+    }
+
     /**
      * this method switches to the screen that displays the previous page viewed
      */

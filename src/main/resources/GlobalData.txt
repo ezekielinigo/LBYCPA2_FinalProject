@@ -1,0 +1,18 @@
+St. Peter Life & Cremation,We sell flowers :DD,5,"flowers, plants, gardening"
+Sampaguita,mabango sya fr,145,34,"flowers, plants, decoration",St. Peter Life & Cremation
+Roses,w/ free fertilizer,459,21,"flowers, plants, decoration",St. Peter Life & Cremation
+Silver Steel Casket With Crepe Interior,w/ free flowers of your choice,111795,2,"tools, equipment, decoration",St. Peter Life & Cremation
+Steel Black Casket Handcrafted,free shipping,91770,2,"tools, equipment, decoration",St. Peter Life & Cremation
+
+Strickland Propane,We sell propane and propane accessories,4,"tools, cooking"
+Petron Gasul 11kg LPG,Snap on valve available nationwide!,2799,12,"tools, equipment, cooking",Strickland Propane
+Petron Gasul 2.7kg LPG burner,Snap on valve available nationwide!,999,12,"tools, equipment, cooking",Strickland Propane
+
+Samsung Electronics,We sell electronics,5,"electronics, gadgets, appliances, cooking"
+Samsung Microwave Smart Oven 32L,Reheat your favorite meal with Samsung Microwave Smart Oven 32L. 6-in-1 Kitchen Solution. Enjoy healthier fried food. Even Grilling.,13994,5,"electronics, appliances, gadgets, cooking",Samsung Electronics
+Samsung Smart Oven 35L,All-in-One Cooking: Convection Air Fry Grill Steam Microwave and Ferment HotBlast™ Technology More Space for Bigger Plates: 380 mm Turntable,26295,5,"electronics, appliances, gadgets, cooking",Samsung Electronics
+Samsung 55" QLED 4K Smart TV,QLED 4K Smart TV. Quantum Processor 4K. Quantum HDR 4X. Ambient Mode. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD.,59999,5,"electronics, appliances, gadgets",Samsung Electronics
+Samsung 65" QLED 4K Smart TV,QLED 4K Smart TV. Quantum Processor 4K. Quantum HDR 4X. Ambient Mode. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD.,89999,5,"electronics, appliances, gadgets",Samsung Electronics
+Samsung Refrigerator with Family Hub and SpaceMax Technology,Our 1st Smart Refrigerator with a built-in screen. Control smart appliances and devices with SmartThings App. Share and enjoy family moments,159000,1,"electronics, appliances, gadgets, cooking",Samsung Electronics
+Samsung Front Load Washing Machine 10.5kg,AddWash Hygiene steam: Anti-Bacteria Intensive Wash EcoBubble Technology,54995,2,"electronics, appliances, gadgets, cleaning",Samsung Electronics
+Samsung Twin Tub Washing Machine 16kg,Power Storm Magic Mixer Two-way Lint Filter Rust-proof Body,19000,2,"electronics, appliances, gadgets, cleaning",Samsung Electronics

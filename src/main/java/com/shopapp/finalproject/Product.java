@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Product {
     String name, description;
-    ArrayList<Image> images = new ArrayList<>();
+    Image image;
     int stock;
     float price;
     ArrayList<String> tags;
@@ -22,17 +22,17 @@ public class Product {
         String[] split = tags.split(",\\s");
         this.tags = new ArrayList<>(Arrays.asList(split));
 
-        this.seller = GlobalData.getInstance().getSeller(seller);
+        this.seller = GlobalData.getInstance().getGlobalSeller(seller);
 
         try {
-            this.images.add(new Image(Product.class.getResource("/images/products/" + name + ".png").toString()));
+            this.image = new Image(Product.class.getResource("/images/products/" + name + ".png").toString());
         }catch (Exception e) {
-            this.images.add(new Image(Product.class.getResource("/images/products/sampleProduct.png").toString()));
+            this.image = new Image(Product.class.getResource("/images/products/sampleProduct.png").toString());
         }
     }
 
-    public Image getImage(int idx) {
-        return this.images.get(idx);
+    public Image getImage() {
+        return this.image;
     }
 
     public String getName() {
@@ -45,5 +45,8 @@ public class Product {
 
     public Seller getSeller() {
         return this.seller;
+    }
+    public ArrayList<String> getTags() {
+        return this.tags;
     }
 }

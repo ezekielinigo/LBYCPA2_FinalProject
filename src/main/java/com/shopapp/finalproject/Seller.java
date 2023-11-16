@@ -1,5 +1,7 @@
 package com.shopapp.finalproject;
 
+import javafx.scene.image.Image;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +9,7 @@ import java.util.Arrays;
 public class Seller {
     private String name, description;
     private int rating;
+    private Image image;
     private ArrayList<String> tags = new ArrayList<>();
     private ArrayList<Product> products = new ArrayList<>();
 
@@ -24,6 +27,12 @@ public class Seller {
 
         String[] split = tags.split(",\\s");
         this.tags = new ArrayList<>(Arrays.asList(split));
+
+        try {
+            this.image = new Image(Seller.class.getResource("/images/sellers/" + name + ".png").toString());
+        }catch (Exception e) {
+            this.image = new Image(Seller.class.getResource("/images/sellers/sampleSeller.png").toString());
+        }
     }
 
     public void addProduct(Product product) {
@@ -34,7 +43,19 @@ public class Seller {
         return this.products;
     }
 
-    public Object getName() {
+    public String getName() {
         return this.name;
+    }
+
+    public Image getImage() {
+        return this.image;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public ArrayList<String> getTags() {
+        return this.tags;
     }
 }
