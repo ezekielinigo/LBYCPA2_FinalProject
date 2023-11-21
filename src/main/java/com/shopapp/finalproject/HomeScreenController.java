@@ -1,22 +1,22 @@
 package com.shopapp.finalproject;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import java.util.function.BiConsumer;
 
 public class HomeScreenController extends BaseController implements Initializable {
 
@@ -26,49 +26,43 @@ public class HomeScreenController extends BaseController implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GlobalData g = GlobalData.getInstance();
-
         g.setRelevantResults();
-        for (Product product : g.getRelevantProducts()) {
-            try {
-                // load a new thumbnail view for each product
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ThumbnailView.fxml"));
-                AnchorPane thumbnailView = loader.load();
-                ThumbnailViewController controller = loader.getController();
-                controller.setProduct(product);
 
-                Point2D nextPosition = getNextAvailablePosition(productGrid);
-                if (nextPosition.getX() != -1 && nextPosition.getY() != -1) {
-                    // add the new thumbnailView to the grid
-                    productGrid.add(thumbnailView, (int) nextPosition.getX(), (int) nextPosition.getY());
-
-                    // set a click handler for the product detail view
-                    thumbnailView.setOnMouseClicked(e -> gotoProductDetail(product));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        Platform.runLater(() -> {
+            Stage stage = (Stage) productGrid.getScene().getWindow(); // This might be null here
+            for (Product product : g.getRelevantProducts()) {
+                addThumbnail("ThumbnailView.fxml", product, (p, s) -> gotoProductDetail(p, s), stage);
             }
-        }
-        for (Seller seller : g.getRelevantSellers()) {
-            try {
-                // load a new thumbnail view for each product
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ThumbnailView.fxml"));
-                AnchorPane thumbnailView = loader.load();
-                ThumbnailViewController controller = loader.getController();
-                controller.setSeller(seller);
 
-                Point2D nextPosition = getNextAvailablePosition(productGrid);
-                if (nextPosition.getX() != -1 && nextPosition.getY() != -1) {
-                    // add the new thumbnailView to the grid
-                    productGrid.add(thumbnailView, (int) nextPosition.getX(), (int) nextPosition.getY());
-
-                    // set a click handler for the product detail view
-                    thumbnailView.setOnMouseClicked(e -> gotoSellerDetail(seller));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            for (Seller seller : g.getRelevantSellers()) {
+                addThumbnail("ThumbnailView.fxml", seller, (s, st) -> gotoSellerDetail(s, st), stage); // Adjusted to pass stage
             }
+        });
+
+    }
+
+    private <T> void addThumbnail(String fxmlFile, T item, BiConsumer<T, Stage> detailHandler, Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            AnchorPane thumbnailView = loader.load();
+            ThumbnailViewController controller = loader.getController();
+
+            if (item instanceof Product) {
+                controller.setProduct((Product) item);
+            } else if (item instanceof Seller) {
+                controller.setSeller((Seller) item);
+            }
+
+            Point2D nextPosition = getNextAvailablePosition(productGrid);
+            if (nextPosition.getX() != -1 && nextPosition.getY() != -1) {
+                productGrid.add(thumbnailView, (int) nextPosition.getX(), (int) nextPosition.getY());
+                thumbnailView.setOnMouseClicked(e -> detailHandler.accept(item, stage));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     @FXML
     void gotoCart(MouseEvent event) throws IOException {

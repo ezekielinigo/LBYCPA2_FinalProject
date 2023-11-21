@@ -64,7 +64,7 @@
           </graphic>
         </Button>
         <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product..." />
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#gotoSearchResults" prefHeight="30.0" prefWidth="0.0" text="Search">
+        <Button fx:id="searchButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#gotoSearchResults" prefHeight="30.0" prefWidth="0.0" text="Search">
           <graphic>
             <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoSearchResults" pickOnBounds="true" preserveRatio="true">
               <image>
