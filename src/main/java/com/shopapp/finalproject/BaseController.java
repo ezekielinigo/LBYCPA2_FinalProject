@@ -1,5 +1,12 @@
 package com.shopapp.finalproject;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
 public class BaseController {
 
     /**
@@ -15,11 +22,19 @@ public class BaseController {
      * this method switches to a screen that displays the product's details, images, etc. as well as the add to cart and seller buttons
      * @param product: the product that will be used to fill the product detail page
      */
-    protected void gotoProductDetail(Product product) {
-        // insert code here
+    protected void gotoProductDetail(Product product, Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDetail.fxml"));
+            Parent root = loader.load();
+            ProductDetailController controller = loader.getController();
+            controller.setProduct(product);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    protected void gotoSellerDetail(Seller seller) {
+    protected void gotoSellerDetail(Seller seller, Stage stage) {
         // insert code here
     }
 
@@ -28,9 +43,7 @@ public class BaseController {
      */
     protected void gotoPrevious() {
         // TBA di pa tapos
-        GlobalData g = GlobalData.getInstance();
-        Product previousProduct = g.getHistoryStack().pop();
-        gotoProductDetail(previousProduct);
+
     }
 
     /**
