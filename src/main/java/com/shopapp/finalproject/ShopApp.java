@@ -15,6 +15,8 @@ public class ShopApp extends Application {
         stage.setTitle("the better shopee");
         stage.setScene(scene);
         stage.show();
+        HomeScreenController controller = fxmlLoader.getController();
+        controller.setup();
     }
 
     public static void main(String[] args) {

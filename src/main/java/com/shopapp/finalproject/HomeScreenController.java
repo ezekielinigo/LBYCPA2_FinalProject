@@ -18,13 +18,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.BiConsumer;
 
-public class HomeScreenController extends BaseController implements Initializable {
+public class HomeScreenController extends BaseController {
 
     @FXML
     private GridPane productGrid;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void setup() {
         GlobalData g = GlobalData.getInstance();
         g.setRelevantResults();
 
