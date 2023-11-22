@@ -2,6 +2,7 @@ package com.shopapp.finalproject;
 
 import com.shopapp.finalproject.DataStructs.Queue;
 import com.shopapp.finalproject.DataStructs.Stack;
+import javafx.scene.Scene;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -43,28 +44,6 @@ public class GlobalData {
         // di pwede to sa GlobalData kasi nagkaka circular dependency error
         // this class is only used at the very start of the program (ShopApp.java)
 
-        // first you initialize the seller
-        // then you initialize the products wherein each will be assigned to a seller (so that the product page can show the seller)
-//        addGlobalSeller("St. Peter Life & Cremation", "We sell flowers :DD", 5, "flowers, plants, gardening");
-//        addGlobalProduct("Sampaguita", "mabango sya fr", 145, 34, "flowers, plants, decoration", "St. Peter Life & Cremation");
-//        addGlobalProduct("Roses", "w/ free fertilizer", 459, 21, "flowers, plants, decoration", "St. Peter Life & Cremation");
-//        addGlobalProduct("Silver Steel Casket With Crepe Interior", "w/ free flowers of your choice", 111795, 2, "tools, equipment, decoration", "St. Peter Life & Cremation");
-//        addGlobalProduct("Steel Black Casket Handcrafted", "free shipping", 91770, 2, "tools, equipment, decoration", "St. Peter Life & Cremation");
-//
-//        addGlobalSeller("Strickland Propane", "We sell propane and propane accessories", 4, "tools, cooking");
-//        addGlobalProduct("Petron Gasul 11kg LPG", "Snap on valve available nationwide!", 2799, 12, "tools, equipment, cooking", "Strickland Propane");
-//        addGlobalProduct("Petron Gasul 2.7kg LPG burner", "Snap on valve available nationwide!", 999, 12, "tools, equipment, cooking", "Strickland Propane");
-//
-//        addGlobalSeller("Samsung Electronics", "We sell electronics", 5, "electronics, gadgets, appliances, cooking");
-//        addGlobalProduct("Samsung Microwave Smart Oven 32L", "Reheat your favorite meal with Samsung Microwave Smart Oven 32L. 6-in-1 Kitchen Solution. Enjoy healthier fried food. Even Grilling.", 13994, 5, "electronics, appliances, gadgets, cooking", "Samsung Electronics");
-//        addGlobalProduct("Samsung Smart Oven 35L", "All-in-One Cooking: Convection, Air Fry, Grill, Steam, Microwave and Ferment , HotBlast™ Technology, More Space for Bigger Plates: 380 mm Turntable", 26295, 5, "electronics, appliances, gadgets, cooking", "Samsung Electronics");
-//        addGlobalProduct("Samsung 55\" QLED 4K Smart TV", "QLED 4K Smart TV. Quantum Processor 4K. Quantum HDR 4X. Ambient Mode. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD.", 59999, 5, "electronics, appliances, gadgets", "Samsung Electronics");
-//        addGlobalProduct("Samsung 65\" QLED 4K Smart TV", "QLED 4K Smart TV. Quantum Processor 4K. Quantum HDR 4X. Ambient Mode. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD. 100% Color Volume with Quantum Dot. Real Game Enhancer. 4K UHD.", 89999, 5, "electronics, appliances, gadgets", "Samsung Electronics");
-//        addGlobalProduct("Samsung Refrigerator with Family Hub and SpaceMax Technology", "Our 1st Smart Refrigerator with a built-in screen, Control smart appliances and devices with SmartThings App, Share and enjoy family moments", 159000, 1, "electronics, appliances, gadgets, cooking", "Samsung Electronics");
-//        addGlobalProduct("Samsung Front Load Washing Machine 10.5kg", "AddWash, Hygiene steam: Anti-Bacteria, Intensive Wash, EcoBubble Technology", 54995, 2, "electronics, appliances, gadgets, cleaning", "Samsung Electronics");
-//        addGlobalProduct("Samsung Twin Tub Washing Machine 16kg", "Power Storm, Magic Mixer, Two-way Lint Filter, Rust-proof Body", 19000, 2, "electronics, appliances, gadgets, cleaning", "Samsung Electronics");
-
-        //String filePath = GlobalData.class.getResourceAsStream("/GlobalData.txt").toString(); // cannot find the file specified
         try (InputStream is = GlobalData.class.getResourceAsStream("/GlobalData.txt");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
@@ -110,12 +89,6 @@ public class GlobalData {
     private ArrayList<Product> globalProducts = new ArrayList<>();
     private ArrayList<Product> cart = new ArrayList<>();
 
-    /**
-     * while historyStack is used for the "back button" func, historyList will be used to display the history page
-     */
-    private Stack<Product> historyStack = new Stack<>();
-    private ArrayList<Product> historyList = new ArrayList<>();
-
     /** getter and setters */
     public ArrayList<Product> getGlobalProducts() {
         return globalProducts;
@@ -136,13 +109,7 @@ public class GlobalData {
         return cart;
     }
 
-    public Stack<Product> getHistoryStack() {
-        return historyStack;
-    }
 
-    public ArrayList<Product> getHistoryList() {
-        return historyList;
-    }
 
     public void addToCart(Product product) {
         cart.add(product);
@@ -166,7 +133,7 @@ public class GlobalData {
         return null;
     }
 
-    /** utility methods **/
+    /** relevant product/seller handling **/
 
     /**
      * the global arrays will not be used to display the products in the home page / search page
@@ -249,6 +216,29 @@ public class GlobalData {
 
     }
 
+    /**
+     * history and previously visited handling
+     * while historyStack is used for the "back button" func, historyList will be used to display the history page
+     */
+
+    public void addToHistory(Product product) {
+        productHistoryList.add(product);
+    }
+
+    public void addToHistory(Seller seller) {
+        sellerHistoryList.add(seller);
+    }
+
+    public void addToHistory(Scene scene) { sceneHistoryStack.push(scene); }
+
+
+    private Stack<Scene> sceneHistoryStack = new Stack<>();
+    private ArrayList<Product> productHistoryList = new ArrayList<>();
+    private ArrayList<Seller> sellerHistoryList = new ArrayList<>();
+
+    public Scene getPreviousScene() {
+        return sceneHistoryStack.pop();
+    }
 
 
 }

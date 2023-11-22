@@ -3,6 +3,7 @@ package com.shopapp.finalproject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,11 +25,22 @@ public class BaseController {
      */
     protected void gotoProductDetail(Product product, Stage stage) {
         try {
+            // add previous scene to history
+            GlobalData.getInstance().addToHistory(stage.getScene());
+
+            // update relevant tags based on opened product
+            for (String tag : product.getTags())
+                GlobalData.getInstance().addRelevantTag(tag);
+
+            // switch scenes
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDetail.fxml"));
-            Parent root = loader.load();
+            Scene productDetailScreen = new Scene(loader.load());
+            stage.setScene(productDetailScreen);
+
+            // setup product information
             ProductDetailController controller = loader.getController();
-            controller.setProduct(product);
-            stage.getScene().setRoot(root);
+            controller.setup(product);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,8 +53,9 @@ public class BaseController {
     /**
      * this method switches to the screen that displays the previous page viewed
      */
-    protected void gotoPrevious() {
-        // TBA di pa tapos
+    protected void gotoPrevious(Stage stage) {
+        Scene newScene = GlobalData.getInstance().getPreviousScene();
+        stage.setScene(newScene);
 
     }
 
