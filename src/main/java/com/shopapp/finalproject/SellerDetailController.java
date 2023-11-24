@@ -8,11 +8,19 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
+import java.util.ArrayList;
+
 public class SellerDetailController {
 
     public void setup(Seller seller) {
         displayName.setText(seller.getName());
         displayDescription.setText(seller.getDescription());
+        ArrayList<String> rating = new ArrayList<>();
+        for (int i = 0; i < seller.getRating(); i++)
+            rating.add("★");
+        for (int i = seller.getRating(); i < 5; i++)
+            rating.add("☆");
+        displayPrice.setText(rating.toString());
 
         // handle choicebox and thumbnail display depending on selected value
         choiceBox.getItems().addAll("Products","Related Sellers");

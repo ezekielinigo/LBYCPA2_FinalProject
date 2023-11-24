@@ -58,4 +58,8 @@ public class Seller {
     public ArrayList<String> getTags() {
         return this.tags;
     }
+
+    public int getRating() {
+        return this.rating;
+    }
 }
