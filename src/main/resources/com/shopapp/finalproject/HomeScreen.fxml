@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.HomeScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.HomeScreenController">
   <center>
     <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <content>
@@ -45,18 +45,18 @@
   <top>
     <SplitPane dividerPositions="0.931438127090301, 0.5, 0.5, 0.5" prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
       <items>
-            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#gotoPrevious" prefHeight="30.0" prefWidth="0.0" text="Search">
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoPreviousScreen" onMouseClicked="#gotoPreviousScreen" prefHeight="30.0" prefWidth="0.0" text="Search">
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoPrevious" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoPreviousScreen" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/icons/angle-left.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#gotoHistory" prefHeight="30.0" prefWidth="0.0" text="Search">
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoHistoryScreen" onMouseClicked="#gotoHistoryScreen" prefHeight="30.0" prefWidth="0.0" text="Search">
           <graphic>
-            <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoHistory" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoHistoryScreen" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../../../images/icons/time-past.png" />
               </image>

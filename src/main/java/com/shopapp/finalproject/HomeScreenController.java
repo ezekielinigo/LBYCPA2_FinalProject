@@ -28,19 +28,29 @@ public class HomeScreenController extends BaseController {
         g.setRelevantResults();
 
         Platform.runLater(() -> {
-            Stage stage = (Stage) productGrid.getScene().getWindow(); // This might be null here
+            Stage stage = (Stage) productGrid.getScene().getWindow();
+            String prevScreenType = "home";
+            String prevScreenIdentifier = null;
+
             for (Product product : g.getRelevantProducts()) {
-                addThumbnail("ThumbnailView.fxml", product, (p, s) -> gotoProductDetail(p, s), stage);
+                addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
+                        (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
             }
 
             for (Seller seller : g.getRelevantSellers()) {
-                addThumbnail("ThumbnailView.fxml", seller, (s, st) -> gotoSellerDetail(s, st), stage); // Adjusted to pass stage
+                addThumbnail("ThumbnailView.fxml", seller, stage, prevScreenType, prevScreenIdentifier,
+                        (s, st, pT, pI) -> gotoSellerDetail(s, st, pT, pI));
             }
         });
-
     }
 
-    private <T> void addThumbnail(String fxmlFile, T item, BiConsumer<T, Stage> detailHandler, Stage stage) {
+    @FunctionalInterface
+    public interface QuadConsumer<T, U, V, W> {
+        void accept(T t, U u, V v, W w);
+    }
+
+    private <T> void addThumbnail(String fxmlFile, T item, Stage stage, String prevScreenType, String prevScreenIdentifier,
+                                  QuadConsumer<T, Stage, String, String> detailHandler) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             AnchorPane thumbnailView = loader.load();
@@ -55,12 +65,13 @@ public class HomeScreenController extends BaseController {
             Point2D nextPosition = getNextAvailablePosition(productGrid);
             if (nextPosition.getX() != -1 && nextPosition.getY() != -1) {
                 productGrid.add(thumbnailView, (int) nextPosition.getX(), (int) nextPosition.getY());
-                thumbnailView.setOnMouseClicked(e -> detailHandler.accept(item, stage));
+                thumbnailView.setOnMouseClicked(e -> detailHandler.accept(item, stage, prevScreenType, prevScreenIdentifier));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 
     @FXML
@@ -105,13 +116,13 @@ public class HomeScreenController extends BaseController {
     }
 
     @FXML
-    void gotoPrevious(MouseEvent event) {
+    void gotoPreviousScreen(MouseEvent event) {
 
     }
 
     @FXML
-    void gotoHistory(MouseEvent event) {
-
+    void gotoHistoryScreen(MouseEvent event) {
+        super.gotoHistory((Stage) productGrid.getScene().getWindow());
     }
 
 

@@ -58,25 +58,25 @@
    <top>
       <SplitPane dividerPositions="0.07107023411371237, 0.1479933110367893, 0.8520066889632107, 0.9289297658862876" prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <items>
-            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoPrevious" onMouseClicked="#gotoPrevious" prefHeight="30.0" prefWidth="0.0" text="Search">
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoPreviousScreen" prefHeight="30.0" prefWidth="0.0" text="Search">
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoPrevious" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoPreviousScreen" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/icons/angle-left.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoHistory" onMouseClicked="#gotoHistory" prefHeight="30.0" prefWidth="0.0" text="Search">
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoHistoryScreen" prefHeight="30.0" prefWidth="0.0" text="Search">
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoHistory" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoHistoryScreen" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/icons/time-past.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product..." />
+            <TextField fx:id="searchBar" prefHeight="87.0" prefWidth="525.0" promptText="Search for a product..." />
             <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoSearchResults" onMouseClicked="#gotoSearchResults" prefHeight="30.0" prefWidth="0.0" text="Search">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoSearchResults" pickOnBounds="true" preserveRatio="true">
@@ -109,7 +109,7 @@
                   <Label fx:id="displayRemark" layoutX="14.0" layoutY="6.0" />
                </children>
             </AnchorPane>
-            <Button fx:id="addtocartButton" mnemonicParsing="false" onAction="#addtoCart" prefHeight="30.0" text="ADD TO CART" />
+            <Button mnemonicParsing="false" onAction="#addtoCart" prefHeight="30.0" text="ADD TO CART" />
         </items>
       </SplitPane>
    </bottom>

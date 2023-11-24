@@ -21,7 +21,7 @@ public class ProductDetailController extends BaseController{
     }
 
     @FXML
-    private Button addtocartButton;
+    private TextField searchBar;
 
     @FXML
     private TextField displayAmount;
@@ -89,13 +89,13 @@ public class ProductDetailController extends BaseController{
     }
 
     @FXML
-    void gotoHistory(MouseEvent event) {
-
+    void gotoHistoryScreen(MouseEvent event) {
+        super.gotoHistory((Stage) searchBar.getScene().getWindow());
     }
 
     @FXML
-    public void gotoPrevious() {
-        super.gotoPrevious((Stage) addtocartButton.getScene().getWindow());
+    public void gotoPreviousScreen() {
+        super.gotoPrevious((Stage) searchBar.getScene().getWindow());
     }
 
     @FXML
@@ -106,7 +106,7 @@ public class ProductDetailController extends BaseController{
     @FXML
     void gotoSeller(ActionEvent event) {
         Seller seller = GlobalData.getInstance().getGlobalSeller(displaySeller.getText());
-        super.gotoSellerDetail(seller, (Stage) addtocartButton.getScene().getWindow());
+        super.gotoSellerDetail(seller, (Stage) searchBar.getScene().getWindow(), "product", displayName.getText());
     }
 
 }

@@ -6,9 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -36,14 +34,47 @@ public class SellerDetailController extends BaseController{
         choiceBox.setValue("Products");
         choiceBox.setOnAction(event -> {
             String selected = choiceBox.getValue();
-            displayThumbnail(selected, seller);
+            Platform.runLater(() -> displayThumbnail(selected, seller));
         });
 
         // handle product thumbnails
         displayThumbnail("Products", seller);
     }
 
-    private <T> void addThumbnail(String fxmlFile, T item, BiConsumer<T, Stage> detailHandler, Stage stage) {
+    void displayThumbnail(String selected, Seller seller) {
+        productGrid.getChildren().clear();
+        Stage stage = (Stage) productGrid.getScene().getWindow(); // Ensure this is not null
+        String prevScreenType = "seller"; // Set these appropriately
+        String prevScreenIdentifier = seller.getName(); // Set these appropriately
+
+
+        if (selected == "Products") {
+            for (Product product : seller.getProducts()) {
+                addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
+                        (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
+            }
+        }else{
+            ArrayList<Seller> relatedSellers = new ArrayList<>();
+            for (String tag : seller.getTags()) {
+                for (Seller s : GlobalData.getInstance().getGlobalSellers()) {
+                    if (s.getTags().contains(tag) && !s.getName().equals(seller.getName()))
+                        relatedSellers.add(s);
+                }
+            }
+            for (Seller relatedSeller : relatedSellers) {
+                addThumbnail("ThumbnailView.fxml", relatedSeller, stage, prevScreenType, prevScreenIdentifier,
+                        (s, st, pT, pI) -> gotoSellerDetail(s, st, pT, pI));
+            }
+        }
+    }
+
+    @FunctionalInterface
+    public interface QuadConsumer<T, U, V, W> {
+        void accept(T t, U u, V v, W w);
+    }
+
+    private <T> void addThumbnail(String fxmlFile, T item, Stage stage, String prevScreenType, String prevScreenIdentifier,
+                                  HomeScreenController.QuadConsumer<T, Stage, String, String> detailHandler) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             AnchorPane thumbnailView = loader.load();
@@ -58,26 +89,10 @@ public class SellerDetailController extends BaseController{
             Point2D nextPosition = getNextAvailablePosition(productGrid);
             if (nextPosition.getX() != -1 && nextPosition.getY() != -1) {
                 productGrid.add(thumbnailView, (int) nextPosition.getX(), (int) nextPosition.getY());
-                thumbnailView.setOnMouseClicked(e -> detailHandler.accept(item, stage));
+                thumbnailView.setOnMouseClicked(e -> detailHandler.accept(item, stage, prevScreenType, prevScreenIdentifier));
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    void displayThumbnail(String selected, Seller seller) {
-
-        if (selected == "Products") {
-            Platform.runLater(() -> {
-                Stage stage = (Stage) productGrid.getScene().getWindow(); // This might be null here
-                for (Product product : seller.getProducts()) {
-                    addThumbnail("ThumbnailView.fxml", product, (p, s) -> gotoProductDetail(p, s), stage);
-                }
-            });
-        }else{
-            Platform.runLater(() -> {
-                System.out.println("SHOW RELATED SELLERS");
-            });
         }
     }
 
@@ -127,6 +142,9 @@ public class SellerDetailController extends BaseController{
     @FXML
     private GridPane productGrid;
 
+    @FXML
+    private TextField searchBar;
+
 
 
     @FXML
@@ -135,13 +153,13 @@ public class SellerDetailController extends BaseController{
     }
 
     @FXML
-    void gotoHistory(MouseEvent event) {
-
+    void gotoHistoryScreen(MouseEvent event) {
+        super.gotoHistory((Stage) searchBar.getScene().getWindow());
     }
 
     @FXML
-    void gotoPrevious(MouseEvent event) {
-        super.gotoPrevious((Stage) displayDescription.getScene().getWindow());
+    void gotoPreviousScreen(MouseEvent event) {
+        super.gotoPrevious((Stage) searchBar.getScene().getWindow());
     }
 
     @FXML

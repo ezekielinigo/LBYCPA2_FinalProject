@@ -45,6 +45,12 @@ public class GlobalData {
         // this class is only used at the very start of the program (ShopApp.java)
 
         // this section reads GlobalData.txt and adds them to the globalProducts and globalSellers arrays
+        // UPDATE: remove seller tags from GlobalData.txt
+        //         instead, cycle through all the products of that seller
+        //         then get all tags from those products (avoid duplicates)
+        //         add those tags to seller tags in increasing order of frequency
+        //         in theory, seller page should now be sorted by relevance
+
         try (InputStream is = GlobalData.class.getResourceAsStream("/GlobalData.txt");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
@@ -81,7 +87,6 @@ public class GlobalData {
                 }
             }
         }
-
     }
 
     /**
@@ -222,27 +227,33 @@ public class GlobalData {
 
     /**
      * history and previously visited handling
-     * while historyStack is used for the "back button" func, historyList will be used to display the history page
+     * historyList : used to display thumbnails in history page
+     * historyStack : used to go back to previous page
+     *
+     * each element has two parts: type (is it a product page? a seller page? search page?)
+     *                             identifier (product name, seller name, or the search term used, set to null if type is "home" or "cart")
      */
+    ArrayList<String[]> historyList = new ArrayList<>();
+    Stack<String[]> historyStack = new Stack<>();
 
-    public void addToHistory(Product product) {
-        productHistoryList.add(product);
+    public void addToHistory(String type, String identifier) {
+        String[] history = new String[]{type, identifier};
+        historyList.add(history);
+        historyStack.push(history);
     }
 
-    public void addToHistory(Seller seller) {
-        sellerHistoryList.add(seller);
+    public String[] popHistory() {
+        if (!historyStack.isEmpty()) {
+            String[] prevScreen = historyStack.pop();
+            historyList.removeLast();
+            return prevScreen;
+        }else
+            return new String[]{"home", null};
+
     }
 
-    public void addToHistory(Scene scene) { sceneHistoryStack.push(scene); }
-
-
-    private Stack<Scene> sceneHistoryStack = new Stack<>();
-    private ArrayList<Product> productHistoryList = new ArrayList<>();
-    private ArrayList<Seller> sellerHistoryList = new ArrayList<>();
-
-    public Scene getPreviousScene() {
-        return sceneHistoryStack.pop();
+    public ArrayList<String[]> getHistoryList() {
+        return historyList;
     }
-
 
 }
