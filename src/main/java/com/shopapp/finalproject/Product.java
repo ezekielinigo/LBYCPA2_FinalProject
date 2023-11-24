@@ -49,4 +49,12 @@ public class Product {
     public ArrayList<String> getTags() {
         return this.tags;
     }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public char[] getStock() {
+        return String.valueOf(this.stock).toCharArray();
+    }
 }
