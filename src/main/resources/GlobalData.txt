@@ -16,3 +16,6 @@ Samsung 65" QLED 4K Smart TV,QLED 4K Smart TV. Quantum Processor 4K. Quantum HDR
 Samsung Refrigerator with Family Hub and SpaceMax Technology,Our 1st Smart Refrigerator with a built-in screen. Control smart appliances and devices with SmartThings App. Share and enjoy family moments,159000,1,"electronics, appliances, gadgets, cooking",Samsung Electronics
 Samsung Front Load Washing Machine 10.5kg,AddWash Hygiene steam: Anti-Bacteria Intensive Wash EcoBubble Technology,54995,2,"electronics, appliances, gadgets, cleaning",Samsung Electronics
 Samsung Twin Tub Washing Machine 16kg,Power Storm Magic Mixer Two-way Lint Filter Rust-proof Body,19000,2,"electronics, appliances, gadgets, cleaning",Samsung Electronics
+
+Super Foods,We sell food and drinks,5,"foods, beverages"
+Potato Chips,100,
