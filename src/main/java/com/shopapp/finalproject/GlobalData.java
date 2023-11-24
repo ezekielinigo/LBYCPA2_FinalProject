@@ -1,5 +1,6 @@
 package com.shopapp.finalproject;
 
+import com.shopapp.finalproject.DataStructs.Graph;
 import com.shopapp.finalproject.DataStructs.Queue;
 import com.shopapp.finalproject.DataStructs.Stack;
 import javafx.scene.Scene;
@@ -41,9 +42,9 @@ public class GlobalData {
     }
     public void initializeData() {
         // this constructor contains the initialization of all products, sellers, etc.
-        // di pwede to sa GlobalData kasi nagkaka circular dependency error
         // this class is only used at the very start of the program (ShopApp.java)
 
+        // this section reads GlobalData.txt and adds them to the globalProducts and globalSellers arrays
         try (InputStream is = GlobalData.class.getResourceAsStream("/GlobalData.txt");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
@@ -65,18 +66,20 @@ public class GlobalData {
             e.printStackTrace();
         }
 
-
-
-        // insert more sellers and products here vv
-
-
-
-
-
-
         // finally, you add the products to the seller's list of products (so that the seller page can show all their products)
         for (Product product : globalProducts) {
             product.getSeller().addProduct(product);
+        }
+
+        // this section creates the connections between sellers using the graph data struct
+        for (Seller seller : globalSellers) {
+            for (String tag : seller.getTags()) {
+                for (Seller seller2 : globalSellers) {
+                    if (seller2.getTags().contains(tag) && !seller2.equals(seller)) {
+                        globalSellerGraph.addEdge(seller, seller2);
+                    }
+                }
+            }
         }
 
     }
@@ -88,6 +91,7 @@ public class GlobalData {
     private ArrayList<Seller> globalSellers = new ArrayList<>();
     private ArrayList<Product> globalProducts = new ArrayList<>();
     private ArrayList<Product> cart = new ArrayList<>();
+    private Graph<Seller> globalSellerGraph = new Graph<>();
 
     /** getter and setters */
     public ArrayList<Product> getGlobalProducts() {
