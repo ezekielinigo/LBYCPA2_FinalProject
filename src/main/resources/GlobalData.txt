@@ -17,5 +17,19 @@ Samsung Refrigerator with Family Hub and SpaceMax Technology,Our 1st Smart Refri
 Samsung Front Load Washing Machine 10.5kg,AddWash Hygiene steam: Anti-Bacteria Intensive Wash EcoBubble Technology,54995,2,"electronics, appliances, gadgets, cleaning",Samsung Electronics
 Samsung Twin Tub Washing Machine 16kg,Power Storm Magic Mixer Two-way Lint Filter Rust-proof Body,19000,2,"electronics, appliances, gadgets, cleaning",Samsung Electronics
 
-Super Foods,We sell food and drinks,5,"foods, beverages"
-Potato Chips,Organic Potatoes Grown in the Philippines,100,20,"foods"
+Super Foods,We sell foods and drinks,5,"foods, beverages, cooking"
+Potato Chips,Organic Potatoes Grown in the Philippines,100,20,"foods, cooking",Super Foods
+Orange Juice,Organic Oranges from the USA,250,30,"beverages, cooking",Super Foods
+Assorted Candy,Lollipops mints gummies and more,100,30,"foods, cooking",Super Foods
+Soft Drink,Carbonated Drink,30,30,"beverages, cooking",Super Foods
+Bottled Water,Filtered Water,20,30,"beverages, cooking",Super Foods
+
+Enzo Technology,We sell computer peripherals,"electronics, gadgets"
+Enzo Mouse,The All New Enzo Mouse,1000,20,"electronics, gadgets",Enzo Technology
+Enzo Keyboard,Mechanical Keyboard Enzo Style,2000,30,"electronics, gadgets",Enzo Technology
+Enzo Headset,Surround Sound Headset,4000,30,"electronics, gadgets",Enzo Technology
+Enzo Headphones,Wireless Headphones,2000,30,"electronics, gadgets",Enzo Technology
+
+
+
+
