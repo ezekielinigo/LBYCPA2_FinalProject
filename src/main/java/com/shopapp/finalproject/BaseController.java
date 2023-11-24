@@ -1,5 +1,6 @@
 package com.shopapp.finalproject;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -47,7 +48,25 @@ public class BaseController {
     }
 
     protected void gotoSellerDetail(Seller seller, Stage stage) {
-        // insert code here
+        try {
+            // add previous scene to history
+            GlobalData.getInstance().addToHistory(stage.getScene());
+
+            // update relevant tags based on opened seller
+            for (String tag : seller.getTags())
+                GlobalData.getInstance().addRelevantTag(tag);
+
+            // switch scenes
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SellerDetail.fxml"));
+            Scene sellerDetailScreen = new Scene(loader.load());
+            stage.setScene(sellerDetailScreen);
+
+            // setup seller information
+            SellerDetailController controller = loader.getController();
+            controller.setup(seller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
