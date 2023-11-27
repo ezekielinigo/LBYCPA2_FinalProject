@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -22,6 +23,7 @@ public class SellerDetailController extends BaseController{
     public void setup(Seller seller) {
         displayName.setText(seller.getName());
         displayDescription.setText(seller.getDescription());
+        sellerImage.setImage(seller.getImage());
         ArrayList<String> rating = new ArrayList<>();
         for (int i = 0; i < seller.getRating(); i++)
             rating.add("★");
@@ -46,7 +48,6 @@ public class SellerDetailController extends BaseController{
         Stage stage = (Stage) productGrid.getScene().getWindow(); // Ensure this is not null
         String prevScreenType = "seller"; // Set these appropriately
         String prevScreenIdentifier = seller.getName(); // Set these appropriately
-
 
         if (selected == "Products") {
             for (Product product : seller.getProducts()) {
@@ -144,6 +145,8 @@ public class SellerDetailController extends BaseController{
 
     @FXML
     private TextField searchBar;
+    @FXML
+    private ImageView sellerImage;
 
 
 

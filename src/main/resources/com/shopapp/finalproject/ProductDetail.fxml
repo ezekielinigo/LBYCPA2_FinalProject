@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.ProductDetailController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.ProductDetailController">
    <center>
       <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
             <VBox prefHeight="768.0" prefWidth="600.0">
                <children>
-                  <ImageView fitHeight="518.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="displayImage" fitHeight="518.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/products/sampleProduct.png" />
                      </image>

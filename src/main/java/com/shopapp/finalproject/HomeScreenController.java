@@ -117,7 +117,7 @@ public class HomeScreenController extends BaseController {
 
     @FXML
     void gotoPreviousScreen(MouseEvent event) {
-
+        super.gotoPrevious((Stage) productGrid.getScene().getWindow());
     }
 
     @FXML

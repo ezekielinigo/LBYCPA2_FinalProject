@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -15,6 +16,7 @@ public class ProductDetailController extends BaseController{
     public void setup(Product product) {
         displayName.setText(product.getName());
         displayPrice.setText(String.format("P %,.2f", product.getPrice()));
+        displayImage.setImage(product.getImage());
         displayDescription.setText(product.getName()+"\n\n"+product.getDescription());
         displaySeller.setText(product.getSeller().getName());
         displayStock.setText("stock: "+String.valueOf(product.getStock()));
@@ -49,6 +51,8 @@ public class ProductDetailController extends BaseController{
 
     @FXML
     private Button plusButton;
+    @FXML
+    private ImageView displayImage;
 
     @FXML
     void addtoCart(ActionEvent event) {
