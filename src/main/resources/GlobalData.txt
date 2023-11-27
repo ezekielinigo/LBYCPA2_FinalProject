@@ -18,7 +18,7 @@ Samsung Front Load Washing Machine 10.5kg,AddWash Hygiene steam: Anti-Bacteria I
 Samsung Twin Tub Washing Machine 16kg,Power Storm Magic Mixer Two-way Lint Filter Rust-proof Body,19000,2,"electronics, appliances, gadgets, cleaning",Samsung Electronics
 
 Super Foods,We sell foods and drinks,5,"foods, beverages, cooking"
-Potato Chips,Organic Potatoes Grown in the Philippines,100,20,"foods, cooking",Super Foods
+Kettle Potato Chips,Organic Potatoes Grown in the Philippines,100,20,"foods, cooking",Super Foods
 Orange Juice,Organic Oranges from the USA,250,30,"beverages, cooking",Super Foods
 Assorted Candy,Lollipops mints gummies and more,100,30,"foods, cooking",Super Foods
 Soft Drink,Carbonated Drink,30,30,"beverages, cooking",Super Foods

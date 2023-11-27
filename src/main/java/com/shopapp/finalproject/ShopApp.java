@@ -24,4 +24,5 @@ public class ShopApp extends Application {
         g.initializeData();
         launch();
     }
+
 }
