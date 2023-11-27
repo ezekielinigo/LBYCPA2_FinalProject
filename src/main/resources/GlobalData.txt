@@ -24,13 +24,13 @@ Assorted Candy,Lollipops mints gummies and more,100,30,"foods, cooking",Super Fo
 Soft Drink,Carbonated Drink,30,30,"beverages, cooking",Super Foods
 Bottled Water,Filtered Water,20,30,"beverages, cooking",Super Foods
 
-Enzo Technology,We sell computer peripherals,"electronics, gadgets"
+Enzo Technology,We sell computer peripherals,5,"electronics, gadgets"
 Enzo Mouse,The All New Enzo Mouse,1000,20,"electronics, gadgets",Enzo Technology
 Enzo Keyboard,Mechanical Keyboard Enzo Style,2000,30,"electronics, gadgets",Enzo Technology
 Enzo Headset,Surround Sound Headset,4000,30,"electronics, gadgets",Enzo Technology
 Enzo Headphones,Wireless Headphones,2000,30,"electronics, gadgets",Enzo Technology
 
-The Gardener,We sell gardening supplies and tools,"flowers, plants, gardening"
+The Gardener,We sell gardening supplies and tools,5,"flowers, plants, gardening"
 Gardening Hoe,Multipurpose Gardening Hoe,2000,20,"plants, gardening",The Gardener
 Pots,Pots for various plants and flowers,100,50,"plants, flowers, gardening",The Gardener
 Hose,Hose to water plants and flowers,1000,20,"plants, flowers, gardening",The Gardener
