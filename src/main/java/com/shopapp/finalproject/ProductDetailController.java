@@ -93,7 +93,7 @@ public class ProductDetailController extends BaseController{
     }
 
     @FXML
-    void gotoHistoryScreen(MouseEvent event) {
+    void gotoHistoryScreen() {
         super.gotoHistory((Stage) searchBar.getScene().getWindow());
     }
 
