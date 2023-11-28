@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -16,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.HomeScreenController">
   <center>
-    <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+    <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@design.css" BorderPane.alignment="CENTER">
       <content>
         <VBox prefHeight="768.0" prefWidth="600.0" styleClass="home-style">
           <children>
@@ -68,7 +69,11 @@
             </ImageView>
           </graphic>
         </Button>
-        <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product..." />
+        <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
+               <styleClass>
+                  <String fx:value="font-style" />
+                  <String fx:value="button" />
+               </styleClass></TextField>
         <Button fx:id="searchButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#gotoSearchResults" prefHeight="30.0" prefWidth="0.0" text="Search">
           <graphic>
             <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoSearchResults" pickOnBounds="true" preserveRatio="true">

@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('font/Comfortaa.ttf');
+}
+
+.font-style {
+    -fx-font-family: "Comfortaa";
+}
+
 .home-style {
     -fx-background-image: url("../../../images/bg_designs/homebg.gif");
     -fx-background-size: 600 760;
@@ -12,11 +21,19 @@
     -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(235, 225, 213, 1), rgba(235, 225, 213,0.5));
 }
 
-@font-face {
-    font-family: 'Comfortaa';
-    src: url('font/Comfortaa.ttf');
+.button{
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(235, 225, 213, 1), rgba(235, 225, 213,0.5));
 }
 
-.font-style {
-    -fx-font-family: "Comfortaa";
+.impt-button{
+    -fx-background-color: rgba(209, 119, 76, 0.8)
 }
+
+.scroll-pane{
+    -fx-background-color: transparent;
+}
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+

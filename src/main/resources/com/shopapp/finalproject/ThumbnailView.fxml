@@ -18,7 +18,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="priceLabel" layoutX="5.0" layoutY="130.0" prefHeight="17.0" prefWidth="140.0" styleClass="font-style" text="Price" textFill="#753109">
+      <Label fx:id="priceLabel" layoutX="5.0" layoutY="130.0" prefHeight="17.0" prefWidth="140.0" style="-fx-background-color: rgba(209, 119, 76, 0.8);" styleClass="font-style" text="Price" textFill="#fff6f1">
          <font>
             <Font name="Monospaced Regular" size="13.0" />
          </font></Label>

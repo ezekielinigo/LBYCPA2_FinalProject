@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -42,7 +43,11 @@
                            </font>
                         </Label>
                         <TextArea fx:id="displayDescription" editable="false" layoutX="14.0" layoutY="102.0" prefHeight="149.0" prefWidth="560.0" styleClass="font-style" text="Seller Description" wrapText="true" />
-                        <ChoiceBox fx:id="choiceBox" layoutX="397.0" layoutY="67.0" prefHeight="26.0" prefWidth="177.0" />
+                        <ChoiceBox fx:id="choiceBox" layoutX="397.0" layoutY="67.0" prefHeight="26.0" prefWidth="177.0">
+                           <styleClass>
+                              <String fx:value="button" />
+                              <String fx:value="font-style" />
+                           </styleClass></ChoiceBox>
                      </children>
                   </AnchorPane>
                   <GridPane fx:id="productGrid" prefHeight="600.0" prefWidth="600.0">
@@ -85,7 +90,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="searchBar" prefHeight="87.0" prefWidth="525.0" promptText="Search for a product..." />
+            <TextField fx:id="searchBar" prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
+               <styleClass>
+                  <String fx:value="font-style" />
+                  <String fx:value="button" />
+               </styleClass></TextField>
             <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoSearchResults" onMouseClicked="#gotoSearchResults" prefHeight="30.0" prefWidth="0.0" text="Search">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoSearchResults" pickOnBounds="true" preserveRatio="true">
