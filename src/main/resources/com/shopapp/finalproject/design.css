@@ -1,0 +1,9 @@
+.home-style {
+    -fx-background-image: url("../../../images/bg_designs/homebg.gif");
+    -fx-background-size: 600 760;
+}
+
+.product-style {
+    -fx-background-image: url("../../../images/bg_designs/homebg.gif");
+    -fx-background-size: 600 760;
+}
