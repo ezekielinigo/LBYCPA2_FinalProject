@@ -121,9 +121,10 @@ public class HomeScreenController extends BaseController {
     }
 
     @FXML
-    void gotoHistoryScreen(MouseEvent event) {
+    void gotoHistoryScreen() {
         super.gotoHistory((Stage) productGrid.getScene().getWindow());
     }
+
 
 
 }

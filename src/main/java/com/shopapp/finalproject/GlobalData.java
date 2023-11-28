@@ -6,7 +6,7 @@ import com.shopapp.finalproject.DataStructs.Stack;
 import javafx.scene.Scene;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -240,8 +240,6 @@ public class GlobalData {
         String[] history = new String[]{type, identifier};
         historyList.add(history);
         historyStack.push(history);
-
-        System.out.println("added to history: "+historyList.getLast()[0]+" "+historyList.getLast()[1]);
     }
 
     public String[] popHistory() {
