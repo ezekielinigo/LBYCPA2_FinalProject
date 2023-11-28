@@ -151,22 +151,26 @@ public class SellerDetailController extends BaseController{
 
 
     @FXML
-    void gotoCart(MouseEvent event) {
+    void gotoCart() {
 
     }
 
     @FXML
-    void gotoHistoryScreen(MouseEvent event) {
+    void gotoHistoryScreen() {
         super.gotoHistory((Stage) searchBar.getScene().getWindow());
     }
 
     @FXML
-    void gotoPreviousScreen(MouseEvent event) {
+    void gotoPreviousScreen() {
+        for (String[] x : GlobalData.getInstance().getHistoryList()) {
+            System.out.println(x[0]+" "+x[1]);
+        }
+        System.out.println("----");
         super.gotoPrevious((Stage) searchBar.getScene().getWindow());
     }
 
     @FXML
-    void gotoSearchResults(MouseEvent event) {
+    void gotoSearchResults() {
 
     }
 
