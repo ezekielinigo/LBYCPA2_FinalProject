@@ -240,12 +240,14 @@ public class GlobalData {
         String[] history = new String[]{type, identifier};
         historyList.add(history);
         historyStack.push(history);
+
+        System.out.println("added to history: "+historyList.getLast()[0]+" "+historyList.getLast()[1]);
     }
 
     public String[] popHistory() {
         if (!historyStack.isEmpty()) {
             String[] prevScreen = historyStack.pop();
-            historyList.removeLast();
+            historyList.remove(historyList.size() - 1);
             return prevScreen;
         }else
             return new String[]{"home", null};

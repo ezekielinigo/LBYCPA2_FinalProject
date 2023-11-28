@@ -67,6 +67,7 @@ public class BaseController {
 
     protected void gotoSellerDetail(Seller seller, Stage stage, String prevScreenType, String prevScreenIdentifier) {
         try {
+
             // add previous scene to history
             GlobalData.getInstance().addToHistory(prevScreenType, prevScreenIdentifier);
 
@@ -82,6 +83,7 @@ public class BaseController {
             // setup seller information
             SellerDetailController controller = loader.getController();
             controller.setup(seller);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,7 +127,7 @@ public class BaseController {
         } else if (screenType.equals("history")) {
             gotoHistory(stage);
         } else if (screenType.equals("home")) {
-            gotoHistory(stage);
+            gotoHome(stage);
         }
 
     }
@@ -133,7 +135,8 @@ public class BaseController {
     /**
      * this method switches to the screen that displays the full history of visited pages
      */
-    protected void gotoHistory(Stage stage) {
+    protected void gotoHome(Stage stage) {
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("HomeScreen.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
@@ -141,6 +144,26 @@ public class BaseController {
 
             HomeScreenController controller = fxmlLoader.getController();
             controller.setup();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void gotoHistory(Stage stage) {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("History.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+
+            HomeScreenController controller = fxmlLoader.getController();
+            controller.setup();
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
