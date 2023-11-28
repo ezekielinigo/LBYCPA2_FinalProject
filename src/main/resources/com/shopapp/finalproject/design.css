@@ -7,3 +7,16 @@
     -fx-background-image: url("../../../images/bg_designs/homebg.gif");
     -fx-background-size: 600 760;
 }
+
+.thumbnail-style {
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, rgba(235, 225, 213, 1), rgba(235, 225, 213,0.5));
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('font/Comfortaa.ttf');
+}
+
+.font-style {
+    -fx-font-family: "Comfortaa";
+}

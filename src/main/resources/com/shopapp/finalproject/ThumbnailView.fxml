@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.ThumbnailViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" styleClass="thumbnail-style" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.ThumbnailViewController">
    <children>
       <ImageView fx:id="image" fitHeight="110.0" fitWidth="140.0" layoutX="5.0" layoutY="4.0" pickOnBounds="true">
          <image>
             <Image url="@../../../images/products/sampleProduct.png" />
          </image></ImageView>
-      <Label fx:id="nameLabel" layoutX="5.0" layoutY="114.0" prefHeight="17.0" prefWidth="140.0" text="Name">
+      <Label fx:id="nameLabel" layoutX="5.0" layoutY="114.0" prefHeight="17.0" prefWidth="140.0" styleClass="font-style" text="Name">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="priceLabel" layoutX="5.0" layoutY="128.0" prefHeight="17.0" prefWidth="140.0" text="Price" />
+      <Label fx:id="priceLabel" layoutX="5.0" layoutY="130.0" prefHeight="17.0" prefWidth="140.0" styleClass="font-style" text="Price" textFill="#753109">
+         <font>
+            <Font name="Monospaced Regular" size="13.0" />
+         </font></Label>
    </children>
+   <stylesheets>
+      <URL value="@design.css" />
+   </stylesheets>
 </AnchorPane>
