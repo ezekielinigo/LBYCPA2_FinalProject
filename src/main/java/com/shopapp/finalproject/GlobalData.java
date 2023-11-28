@@ -232,6 +232,8 @@ public class GlobalData {
      *
      * each element has two parts: type (is it a product page? a seller page? search page?)
      *                             identifier (product name, seller name, or the search term used, set to null if type is "home" or "cart")
+     *
+     *                             String[] = {"product", "name"}
      */
     ArrayList<String[]> historyList = new ArrayList<>();
     Stack<String[]> historyStack = new Stack<>();

@@ -25,7 +25,6 @@ public class HistoryController extends BaseController {
 
     public void setup() {
         GlobalData g = GlobalData.getInstance();
-        g.setRelevantResults();
 
         Platform.runLater(() -> {
             Stage stage = (Stage) productGrid.getScene().getWindow();
@@ -33,6 +32,7 @@ public class HistoryController extends BaseController {
             String prevScreenIdentifier = null;
 
             for (String[] name : g.historyList) {
+
                 Product product = g.getGlobalProduct(name[1]);
 
                 addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
@@ -114,12 +114,12 @@ public class HistoryController extends BaseController {
     }
 
     @FXML
-    void gotoPreviousScreen(MouseEvent event) {
+    void gotoPreviousScreen() {
         super.gotoPrevious((Stage) productGrid.getScene().getWindow());
     }
 
     @FXML
-    void gotoHistoryScreen(MouseEvent event) {
+    void gotoHistoryScreen() {
         super.gotoHistory((Stage) productGrid.getScene().getWindow());
     }
 
