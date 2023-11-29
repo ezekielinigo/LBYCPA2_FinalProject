@@ -113,21 +113,26 @@ public class BaseController {
      *        identifier (name of product or seller)
      */
     protected void gotoPrevious(Stage stage) {
+        try {
 
-        String[] prevScreen = GlobalData.getInstance().popHistory();
-        String screenType = prevScreen[0];
-        String identifier = prevScreen[1];
+            String[] prevScreen = GlobalData.getInstance().popHistory();
+            String screenType = prevScreen[0];
+            String identifier = prevScreen[1];
 
-        if (screenType.equals("product")) {
-            Product product = GlobalData.getInstance().getGlobalProduct(identifier);
-            gotoProductDetail(product, stage);
-        } else if (screenType.equals("seller")) {
-            Seller seller = GlobalData.getInstance().getGlobalSeller(identifier);
-            gotoSellerDetail(seller, stage);
-        } else if (screenType.equals("history")) {
-            gotoHistory(stage);
-        } else if (screenType.equals("home")) {
-            gotoHome(stage);
+            if (screenType.equals("product")) {
+                Product product = GlobalData.getInstance().getGlobalProduct(identifier);
+                gotoProductDetail(product, stage);
+            } else if (screenType.equals("seller")) {
+                Seller seller = GlobalData.getInstance().getGlobalSeller(identifier);
+                gotoSellerDetail(seller, stage);
+            } else if (screenType.equals("history")) {
+                gotoHistory(stage);
+            } else if (screenType.equals("home")) {
+                gotoHome(stage);
+            }
+
+        } catch (Exception e) {
+            gotoHome(stage); // handle if history is empty
         }
 
     }

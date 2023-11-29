@@ -169,8 +169,8 @@ public class GlobalData {
     private ArrayList<Product> relevantProducts = new ArrayList<>();
     private ArrayList<Seller> relevantSellers = new ArrayList<>();
 
-    private Queue<String> relevantTags = new Queue<>(10); // only used to determine which tags are still relevant
-    private ArrayList<String> relevantTagsList = new ArrayList<>(10); // used to check and manipulate the tags themselves
+    private Queue<String> relevantTags = new Queue<>(3); // only used to determine which tags are still relevant
+    private ArrayList<String> relevantTagsList = new ArrayList<>(3); // used to check and manipulate the tags themselves
 
     public ArrayList<Product> getRelevantProducts() {
         return relevantProducts;
@@ -197,24 +197,35 @@ public class GlobalData {
         relevantProducts.clear();
         relevantSellers.clear();
 
+        Set<Product> uniqueProducts = new HashSet<>();
+        Set<Seller> uniqueSellers = new HashSet<>();
+
         // first, populate the relevantProducts and relevantSellers with products and sellers that have the relevant tags
         for (String tag : relevantTagsList) {
             for (Product product : globalProducts) {
+                if (uniqueProducts.size() >= 12)
+                    break;
                 if (product.getTags().contains(tag.toLowerCase()) || product.getName().toLowerCase().contains(tag.toLowerCase()) || product.getSeller().getName().toLowerCase().contains(tag.toLowerCase())) {
-                    relevantProducts.add(product);
+                    uniqueProducts.add(product);
                 }
             }
             for (Seller seller : globalSellers) {
+                if (uniqueSellers.size() >= 4)
+                    break;
                 if (seller.getTags().contains(tag.toLowerCase()) || seller.getName().toLowerCase().contains(tag.toLowerCase()) || seller.getDescription().toLowerCase().contains(tag.toLowerCase())) {
-                    relevantSellers.add(seller);
+                    uniqueSellers.add(seller);
                 }
             }
         }
 
-        if (relevantProducts.size() < 5) {
+
+        relevantProducts = new ArrayList<>(uniqueProducts);
+        relevantSellers = new ArrayList<>(uniqueSellers);
+
+        if (relevantProducts.size() < 12) {
             // if the relevantProducts array is not yet full, populate it with random products from the globalProducts array
             // avoid duplicates
-            while (relevantProducts.size() < 5) {
+            while (relevantProducts.size() < 12) {
                 Product randomProduct = globalProducts.get((int) (Math.random() * globalProducts.size()));
                 if (!relevantProducts.contains(randomProduct)) {
                     relevantProducts.add(randomProduct);
