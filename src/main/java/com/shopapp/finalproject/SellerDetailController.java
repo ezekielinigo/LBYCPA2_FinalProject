@@ -157,7 +157,7 @@ public class SellerDetailController extends BaseController{
 
     @FXML
     void gotoHistoryScreen() {
-        super.gotoHistory((Stage) searchBar.getScene().getWindow());
+        super.gotoHistory((Stage) searchBar.getScene().getWindow(), "seller", displayName.getText());
     }
 
     @FXML

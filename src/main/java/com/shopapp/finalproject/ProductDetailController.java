@@ -94,7 +94,7 @@ public class ProductDetailController extends BaseController{
 
     @FXML
     void gotoHistoryScreen() {
-        super.gotoHistory((Stage) searchBar.getScene().getWindow());
+        super.gotoHistory((Stage) searchBar.getScene().getWindow(), "product", displayName.getText());
     }
 
     @FXML

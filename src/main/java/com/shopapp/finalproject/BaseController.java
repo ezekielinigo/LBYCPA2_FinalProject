@@ -152,23 +152,35 @@ public class BaseController {
         }
     }
 
-    protected void gotoHistory(Stage stage) {
+    protected void gotoHistory(Stage stage, String prevScreenType, String prevScreenIdentifier) {
 
         try {
+            GlobalData.getInstance().addToHistory(prevScreenType, prevScreenIdentifier);
+
             FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("History.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
 
-            HomeScreenController controller = fxmlLoader.getController();
+            HistoryController controller = fxmlLoader.getController();
             controller.setup();
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    protected void gotoHistory(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("History.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
 
+            HistoryController controller = fxmlLoader.getController();
+            controller.setup();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

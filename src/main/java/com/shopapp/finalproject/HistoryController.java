@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public class HistoryController extends BaseController {
@@ -31,12 +31,29 @@ public class HistoryController extends BaseController {
             String prevScreenType = "home";
             String prevScreenIdentifier = null;
 
-            for (String[] name : g.historyList) {
+            Map<String, Object> uniqueElements = new LinkedHashMap<>();
 
-                Product product = g.getGlobalProduct(name[1]);
+            for (int i = g.historyList.size() - 1; i >= 0; i--) {
+                String[] name = g.historyList.get(i);
+                String key = name[0] + "-" + name[1]; // Create a unique key for each item
 
-                addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
-                        (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
+                if (name[0].equals("product")) {
+                    Product product = g.getGlobalProduct(name[1]);
+                    uniqueElements.put(key, product);
+                } else if (name[0].equals("seller")) {
+                    Seller seller = g.getGlobalSeller(name[1]);
+                    uniqueElements.put(key, seller);
+                }
+            }
+
+            for (Object item : uniqueElements.values()) {
+                if (item instanceof Product) {
+                    addThumbnail("ThumbnailView.fxml", (Product) item, stage, prevScreenType, prevScreenIdentifier,
+                            (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
+                } else if (item instanceof Seller) {
+                    addThumbnail("ThumbnailView.fxml", (Seller) item, stage, prevScreenType, prevScreenIdentifier,
+                            (s, st, pT, pI) -> gotoSellerDetail(s, st, pT, pI));
+                }
             }
 
         });

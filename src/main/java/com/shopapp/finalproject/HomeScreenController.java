@@ -122,7 +122,7 @@ public class HomeScreenController extends BaseController {
 
     @FXML
     void gotoHistoryScreen() {
-        super.gotoHistory((Stage) productGrid.getScene().getWindow());
+        super.gotoHistory((Stage) productGrid.getScene().getWindow(), "home", null);
     }
 
 
