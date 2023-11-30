@@ -100,7 +100,7 @@ public class HistoryController extends BaseController {
 
     @FXML
     void gotoSearchResults(MouseEvent event) {
-        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "home", null, searchBar.getText());
+        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "search", searchBar.getText());
     }
 
     private Point2D getNextAvailablePosition(GridPane gridPane) {

@@ -16,6 +16,8 @@ import java.io.IOException;
 
 public class SearchScreenController extends BaseController {
 
+    String searchQuery;
+
     @FXML
     private GridPane productGrid;
 
@@ -23,13 +25,14 @@ public class SearchScreenController extends BaseController {
     private TextField searchBar;
 
     public void setup(String searchQuery) {
+        this.searchQuery = searchQuery;
         GlobalData g = GlobalData.getInstance();
         g.setRelevantResults(searchQuery);
 
         Platform.runLater(() -> {
             Stage stage = (Stage) productGrid.getScene().getWindow();
-            String prevScreenType = "home";
-            String prevScreenIdentifier = null;
+            String prevScreenType = "search";
+            String prevScreenIdentifier = searchQuery;
 
             for (Product product : g.getRelevantProducts()) {
                 addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
@@ -75,12 +78,12 @@ public class SearchScreenController extends BaseController {
 
     @FXML
     void gotoCart() throws IOException {
-        super.gotoCart((Stage) productGrid.getScene().getWindow(), "home", null);
+        super.gotoCart((Stage) productGrid.getScene().getWindow(), "search", searchQuery);
     }
 
     @FXML
     void gotoSearchResults(MouseEvent event) {
-        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "home", null, searchBar.getText());
+        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "search", searchQuery);
     }
 
     private Point2D getNextAvailablePosition(GridPane gridPane) {

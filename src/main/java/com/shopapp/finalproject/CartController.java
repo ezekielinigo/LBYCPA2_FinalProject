@@ -2,6 +2,7 @@ package com.shopapp.finalproject;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -15,6 +16,9 @@ public class CartController extends BaseController{
 
     @FXML
     private GridPane productGrid;
+
+    @FXML
+    private TextField searchBar;
 
     public void setup() {
         GlobalData g = GlobalData.getInstance();
@@ -36,14 +40,14 @@ public class CartController extends BaseController{
 
             controller.setup(product, count);
 
-            productGrid.addRow(productGrid.getRowCount(), thumbnailView);
+            // Insert the new thumbnail at the beginning of the productGrid
+            productGrid.getChildren().add(0, thumbnailView);
             RowConstraints rc = new RowConstraints();
             rc.setPrefHeight(100);
-            productGrid.getRowConstraints().add(rc);
+            productGrid.getRowConstraints().add(0, rc);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /** moving between screens **/
@@ -64,7 +68,7 @@ public class CartController extends BaseController{
 
     @FXML
     void gotoSearchResults() {
-
+        super.gotoSearchScreen(currentStage, "cart", searchBar.getText());
     }
 
     /** thumbnail functionalities **/

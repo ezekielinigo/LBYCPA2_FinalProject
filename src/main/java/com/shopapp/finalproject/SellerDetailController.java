@@ -58,7 +58,7 @@ public class SellerDetailController extends BaseController{
             ArrayList<Seller> relatedSellers = new ArrayList<>();
             for (String tag : seller.getTags()) {
                 for (Seller s : GlobalData.getInstance().getGlobalSellers()) {
-                    if (s.getTags().contains(tag) && !s.getName().equals(seller.getName()))
+                    if (s.getTags().contains(tag) && !s.getName().equals(seller.getName()) && !relatedSellers.contains(s))
                         relatedSellers.add(s);
                 }
             }
@@ -148,11 +148,9 @@ public class SellerDetailController extends BaseController{
     @FXML
     private ImageView sellerImage;
 
-
-
     @FXML
     void gotoCart() {
-
+        super.gotoCart((Stage) searchBar.getScene().getWindow(), "seller", displayName.getText());
     }
 
     @FXML
@@ -171,7 +169,7 @@ public class SellerDetailController extends BaseController{
 
     @FXML
     void gotoSearchResults() {
-        super.gotoSearchScreen((Stage) searchBar.getScene().getWindow(), "home", null, searchBar.getText());
+        super.gotoSearchScreen((Stage) searchBar.getScene().getWindow(), "home", searchBar.getText());
     }
 
 }

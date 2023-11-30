@@ -131,6 +131,8 @@ public class BaseController {
                 gotoHome(stage);
             } else if (screenType.equals("cart")) {
                 gotoCart(stage);
+            } else if (screenType.equals("search")) {
+                gotoSearchScreen(stage, identifier);
             }
 
         }catch(Exception e){
@@ -219,7 +221,23 @@ public class BaseController {
     }
 
 
-    protected void gotoSearchScreen(Stage stage, String prevScreenType, String prevScreenIdentifier, String searchQuery) {
+    protected void gotoSearchScreen(Stage stage, String prevScreenType,  String searchQuery) {
+        try {
+            GlobalData.getInstance().addToHistory(prevScreenType, searchQuery);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("SearchScreen.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+
+            SearchScreenController controller = fxmlLoader.getController();
+            controller.setup(searchQuery);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void gotoSearchScreen(Stage stage, String searchQuery) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("SearchScreen.fxml"));
             Scene scene = new Scene(fxmlLoader.load());

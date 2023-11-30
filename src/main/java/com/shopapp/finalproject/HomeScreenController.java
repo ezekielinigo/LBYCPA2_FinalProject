@@ -85,7 +85,7 @@ public class HomeScreenController extends BaseController {
 
     @FXML
     void gotoSearchResults() {
-        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "home", null, searchBar.getText());
+        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "search", searchBar.getText());
     }
 
     private Point2D getNextAvailablePosition(GridPane gridPane) {

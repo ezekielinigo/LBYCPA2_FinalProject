@@ -128,7 +128,7 @@ public class ProductDetailController extends BaseController{
 
     @FXML
     void gotoSearchResults() {
-        super.gotoSearchScreen((Stage) searchBar.getScene().getWindow(), "home", null, searchBar.getText());
+        super.gotoSearchScreen((Stage) searchBar.getScene().getWindow(), "search", searchBar.getText());
     }
 
     @FXML

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.CartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.CartController">
   <center>
     <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@design.css" BorderPane.alignment="CENTER">
       <content>
@@ -61,7 +61,7 @@
             </ImageView>
           </graphic>
         </Button>
-        <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
+        <TextField fx:id="searchBar" prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
                <styleClass>
                   <String fx:value="font-style" />
                   <String fx:value="button" />
