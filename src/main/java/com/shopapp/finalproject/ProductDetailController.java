@@ -71,7 +71,7 @@ public class ProductDetailController extends BaseController{
     private ImageView displayImage;
 
     @FXML
-    void addtoCart(ActionEvent event) {
+    void addtoCart() {
         try {
             // the format of displayStock is "stock: 10"
             // int stock should only get "10"

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -26,6 +27,9 @@ public class CartController extends BaseController{
 
     @FXML
     private TextField displayGrandTotal;
+
+    @FXML
+    private CheckBox checkAll;
 
     public void setup() {
         GlobalData g = GlobalData.getInstance();
@@ -126,21 +130,14 @@ public class CartController extends BaseController{
 
     @FXML
     void selectAll() {
-        // go to each cell in gridpane and check if at least one is not selected
-        // if true check all
-        // if false uncheck all
-        boolean check = false;
-        for (CartThumbnailViewController x : thumbnails) {
-            if (!x.displayName.isSelected()) {
-                check = true;
-                break;
-            }
-        }
-        for (CartThumbnailViewController x : thumbnails) {
-            if (check)
+        if (checkAll.isSelected()) {
+            for (CartThumbnailViewController x : thumbnails) {
                 x.setChecked(true);
-            else
+            }
+        }else {
+            for (CartThumbnailViewController x : thumbnails) {
                 x.setChecked(false);
+            }
         }
     }
 
