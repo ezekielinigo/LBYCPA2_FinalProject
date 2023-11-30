@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0" styleClass="thumbnail-style" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.CartThumbnailViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0" styleClass="thumbnail-style" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.CartThumbnailViewController">
    <children>
       <ImageView fx:id="image" fitHeight="141.0" fitWidth="179.0" layoutX="7.0" layoutY="5.0" onMouseClicked="#gotoProduct" pickOnBounds="true">
          <image>
@@ -22,13 +22,13 @@
          </font></Label>
       <Button fx:id="plusButton" layoutX="308.0" layoutY="115.0" mnemonicParsing="false" onAction="#editAmount" prefHeight="26.0" prefWidth="26.0" text="+" />
       <Button fx:id="minusButton" layoutX="194.0" layoutY="115.0" mnemonicParsing="false" onAction="#editAmount" prefHeight="26.0" prefWidth="26.0" text="-" />
-      <TextField fx:id="displayAmount" layoutX="220.0" layoutY="115.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="displayAmount" layoutX="220.0" layoutY="115.0" prefHeight="26.0" prefWidth="88.0" styleClass="font-style" />
       <Label fx:id="displayTotal" layoutX="194.0" layoutY="95.0" prefHeight="17.0" prefWidth="140.0" style="-fx-background-color: rgba(209, 119, 76, 0.8);" styleClass="font-style" text="Total Price" textFill="#fff6f1">
          <font>
             <Font name="Monospaced Regular" size="13.0" />
          </font>
       </Label>
-      <CheckBox fx:id="displayName" layoutX="194.0" layoutY="13.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="400.0" text="Name">
+      <CheckBox fx:id="displayName" layoutX="194.0" layoutY="13.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="400.0" styleClass="font-style" text="Name">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -38,8 +38,8 @@
             <Font name="Monospaced Regular" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="345.0" layoutY="90.0" mnemonicParsing="false" onAction="#removefromCart" prefHeight="60.0" prefWidth="255.0" text="REMOVE FROM CART" />
-      <Button fx:id="displaySeller" layoutX="345.0" layoutY="52.0" mnemonicParsing="false" onAction="#gotoSeller" prefHeight="38.0" prefWidth="255.0" text="SELLER" />
+      <Button layoutX="345.0" layoutY="90.0" mnemonicParsing="false" onAction="#removefromCart" prefHeight="60.0" prefWidth="255.0" styleClass="font-style" stylesheets="@design.css" text="REMOVE FROM CART" />
+      <Button fx:id="displaySeller" layoutX="345.0" layoutY="52.0" mnemonicParsing="false" onAction="#gotoSeller" prefHeight="38.0" prefWidth="255.0" styleClass="font-style" text="SELLER" />
    </children>
    <stylesheets>
       <URL value="@design.css" />

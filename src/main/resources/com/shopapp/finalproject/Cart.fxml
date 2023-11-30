@@ -34,6 +34,9 @@
                      <opaqueInsets>
                         <Insets right="20.0" />
                      </opaqueInsets>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
             </GridPane>
           </children>
         </VBox>
