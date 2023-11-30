@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -22,6 +23,9 @@ public class HomeScreenController extends BaseController {
 
     @FXML
     private GridPane productGrid;
+
+    @FXML
+    private TextField searchBar;
 
     public void setup() {
         GlobalData g = GlobalData.getInstance();
@@ -80,8 +84,8 @@ public class HomeScreenController extends BaseController {
     }
 
     @FXML
-    void gotoSearchResults(MouseEvent event) {
-
+    void gotoSearchResults() {
+        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "home", null, searchBar.getText());
     }
 
     private Point2D getNextAvailablePosition(GridPane gridPane) {

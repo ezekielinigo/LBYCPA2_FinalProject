@@ -136,6 +136,7 @@ public class BaseController {
         }catch(Exception e){
             gotoHome(stage); // handle if history is empty
         }
+
     }
 
     /**
@@ -217,5 +218,19 @@ public class BaseController {
         }
     }
 
+
+    protected void gotoSearchScreen(Stage stage, String prevScreenType, String prevScreenIdentifier, String searchQuery) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("SearchScreen.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+
+            SearchScreenController controller = fxmlLoader.getController();
+            controller.setup(searchQuery);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
