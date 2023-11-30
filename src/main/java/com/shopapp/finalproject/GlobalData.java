@@ -193,6 +193,34 @@ public class GlobalData {
         }
     }
 
+    public void setRelevantResults(String searchQuery) {
+        relevantProducts.clear();
+        relevantSellers.clear();
+
+        // separate into words
+        ArrayList<String> searchQueryList = new ArrayList<>(Arrays.asList(searchQuery.split(" ")));
+
+        for (String query : searchQueryList) {
+            query = query.toLowerCase();
+            for (Product product : globalProducts) {
+                if (relevantProducts.contains(product)) // avoid duplicates
+                    break;
+                if (product.getTags().contains(query) || product.getName().toLowerCase().contains(query) || product.getSeller().getName().toLowerCase().contains(query) || product.getDescription().toLowerCase().contains(query)) {
+                    relevantProducts.add(product);
+                }
+            }
+            for (Seller seller : globalSellers) {
+                if (relevantSellers.contains(seller)) // avoid duplicates
+                    break;
+                if (seller.getTags().contains(query) || seller.getName().toLowerCase().contains(query) || seller.getDescription().toLowerCase().contains(query) || seller.getProducts().contains(getGlobalProduct(query))) {
+                    relevantSellers.add(seller);
+                }
+
+            }
+        }
+
+    }
+
     public void setRelevantResults() {
         // the bulk that does the logic itself
         // tasked with populating the relevantProducts and relevantSellers arrays
