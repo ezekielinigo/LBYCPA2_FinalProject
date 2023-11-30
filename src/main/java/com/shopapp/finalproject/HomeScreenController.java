@@ -75,8 +75,8 @@ public class HomeScreenController extends BaseController {
 
 
     @FXML
-    void gotoCart(MouseEvent event) throws IOException {
-
+    void gotoCart() throws IOException {
+        super.gotoCart((Stage) productGrid.getScene().getWindow(), "home", null);
     }
 
     @FXML

@@ -95,7 +95,6 @@ public class GlobalData {
      */
     private ArrayList<Seller> globalSellers = new ArrayList<>();
     private ArrayList<Product> globalProducts = new ArrayList<>();
-    private ArrayList<Product> cart = new ArrayList<>();
     private Graph<Seller> globalSellerGraph = new Graph<>();
 
     /** getter and setters */
@@ -114,16 +113,6 @@ public class GlobalData {
         this.globalSellers.add(new Seller(name, description, rating, tags));
     }
 
-    public ArrayList<Product> getCart() {
-        return cart;
-    }
-
-
-
-    public void addToCart(Product product) {
-        cart.add(product);
-    }
-
     public Product getGlobalProduct(String name) {
         for (Product product : globalProducts) {
             if (product.getName().equals(name)) {
@@ -140,6 +129,20 @@ public class GlobalData {
             }
         }
         return null;
+    }
+
+    /** cart functionality **/
+    private ArrayList<String[]> cart = new ArrayList<>();
+    public void addToCart(String text, int i) {
+        Product product = getGlobalProduct(text);
+        if (product != null) {
+            cart.clear(); // so that the cart will only contain what was inputted in the textfield
+            cart.add(new String[]{product.getName(), String.valueOf(i)});
+        }
+    }
+
+    public ArrayList<String[]> getCart() {
+        return cart;
     }
 
     /** relevant product/seller handling **/
@@ -268,5 +271,6 @@ public class GlobalData {
     public ArrayList<String[]> getHistoryList() {
         return historyList;
     }
+
 
 }

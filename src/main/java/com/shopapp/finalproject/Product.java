@@ -54,7 +54,7 @@ public class Product {
         return this.description;
     }
 
-    public char[] getStock() {
-        return String.valueOf(this.stock).toCharArray();
+    public int getStock() {
+        return this.stock;
     }
 }

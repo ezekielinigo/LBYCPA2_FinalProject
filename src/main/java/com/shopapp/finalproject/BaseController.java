@@ -188,4 +188,19 @@ public class BaseController {
         }
     }
 
+    protected void gotoCart(Stage stage, String prevScreenType, String prevScreenIdentifier) {
+        try {
+            GlobalData.getInstance().addToHistory(prevScreenType, prevScreenIdentifier);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("Cart.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+
+            CartController controller = fxmlLoader.getController();
+            controller.setup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -62,6 +62,7 @@ public class ProductDetailController extends BaseController{
             int stock = Integer.parseInt(displayStock.getText().substring(7));
             if (stock >= Integer.parseInt(displayAmount.getText())) {
                 displayRemark.setText("Successfully added to cart!");
+                GlobalData.getInstance().addToCart(displayName.getText(), Integer.parseInt(displayAmount.getText()));
             }else{
                 displayRemark.setText("Please enter a valid amount");
             }
@@ -88,8 +89,8 @@ public class ProductDetailController extends BaseController{
     }
 
     @FXML
-    void gotoCart(MouseEvent event) {
-
+    void gotoCart() {
+        super.gotoCart((Stage) searchBar.getScene().getWindow(), "product", displayName.getText());
     }
 
     @FXML
