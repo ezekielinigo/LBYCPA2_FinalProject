@@ -40,16 +40,13 @@ public class CartThumbnailViewController extends CartController{
     }
 
     @FXML
-    private TextField displayAmount;
+    TextField displayAmount;
 
     @FXML
-    private CheckBox displayName;
+    CheckBox displayName;
 
     @FXML
     private Label displayPrice;
-
-    @FXML
-    private Button displaySeller;
 
     @FXML
     private Label displayStock;
@@ -83,17 +80,18 @@ public class CartThumbnailViewController extends CartController{
             }
             displayAmount.setText(String.valueOf(amount));
             displayTotal.setText(String.format("TOTAL: P %,.2f", amount * price));
+
+            // update amount in cart
+            GlobalData g = GlobalData.getInstance();
+            for (String[] x : g.getCart()) {
+                if (x[0].equals(product.getName())) {
+                    x[1] = String.valueOf(amount);
+                    break;
+                }
+            }
+
         } catch (Exception e) {
             displayAmount.setText("1");
-        }
-    }
-
-    private boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
         }
     }
 
@@ -104,12 +102,14 @@ public class CartThumbnailViewController extends CartController{
 
     @FXML
     void removefromCart() {
-
+        GlobalData.getInstance().removeFromCart(product.getName());
+        super.gotoCart((Stage) image.getScene().getWindow(), "cart", null);
     }
 
     @FXML
     void gotoProduct() {
         super.gotoProductDetail(product, (Stage) image.getScene().getWindow(), "cart", null);
     }
+
 
 }

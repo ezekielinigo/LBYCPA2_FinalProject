@@ -75,13 +75,11 @@ public class ProductDetailController extends BaseController{
         try {
             // the format of displayStock is "stock: 10"
             // int stock should only get "10"
-            int stock = Integer.parseInt(displayStock.getText().substring(7));
-            if (stock >= Integer.parseInt(displayAmount.getText())) {
+            if (stock >= amount) {
                 displayRemark.setText("Successfully added to cart!");
-                GlobalData.getInstance().addToCart(displayName.getText(), Integer.parseInt(displayAmount.getText()));
-            }else{
+                GlobalData.getInstance().addToCart(product.getName(), amount);
+            }else
                 displayRemark.setText("Please enter a valid amount");
-            }
 
         }catch (Exception e) {
             displayRemark.setText("Please enter a valid amount");

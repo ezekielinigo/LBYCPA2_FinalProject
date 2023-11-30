@@ -57,4 +57,8 @@ public class Product {
     public int getStock() {
         return this.stock;
     }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 }

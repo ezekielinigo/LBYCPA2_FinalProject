@@ -62,4 +62,8 @@ public class Seller {
     public int getRating() {
         return this.rating;
     }
+
+    public void removeProduct(Product product) {
+        this.products.remove(product);
+    }
 }

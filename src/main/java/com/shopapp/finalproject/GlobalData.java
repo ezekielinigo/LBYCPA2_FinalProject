@@ -104,7 +104,14 @@ public class GlobalData {
     public void addGlobalProduct(String name, String description, float price, int stock, String tags, String seller) {
         this.globalProducts.add(new Product(name, description, price, stock, tags, seller));
     }
-
+    public void removeGlobalProduct(String name) {
+        for (Product product : globalProducts) {
+            if (product.getName().equals(name)) {
+                globalProducts.remove(product);
+                break;
+            }
+        }
+    }
     public ArrayList<Seller> getGlobalSellers() {
         return globalSellers;
     }
@@ -133,16 +140,27 @@ public class GlobalData {
 
     /** cart functionality **/
     private ArrayList<String[]> cart = new ArrayList<>();
-    public void addToCart(String text, int i) {
-        Product product = getGlobalProduct(text);
-        if (product != null) {
-            cart.clear(); // so that the cart will only contain what was inputted in the textfield
-            cart.add(new String[]{product.getName(), String.valueOf(i)});
+    public void addToCart(String productName, int amount) {
+        String[] cartItem = new String[]{productName, String.valueOf(amount)};
+
+        for (String[] x : cart) { // check if the product is already in the cart
+            if (x[0].equals(productName))
+                return;
         }
+        cart.add(cartItem);
     }
 
     public ArrayList<String[]> getCart() {
         return cart;
+    }
+
+    public void removeFromCart(String productName) {
+        for (String[] x : cart) {
+            if (x[0].equals(productName)) {
+                cart.remove(x);
+                break;
+            }
+        }
     }
 
     /** relevant product/seller handling **/
@@ -299,6 +317,7 @@ public class GlobalData {
     public ArrayList<String[]> getHistoryList() {
         return historyList;
     }
+
 
 
 }
