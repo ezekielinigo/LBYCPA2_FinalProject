@@ -25,7 +25,7 @@ public class CartController extends BaseController{
     private TextField searchBar;
 
     @FXML
-    private TextField displayTotal;
+    private TextField displayGrandTotal;
 
     public void setup() {
         GlobalData g = GlobalData.getInstance();
@@ -66,25 +66,41 @@ public class CartController extends BaseController{
 
             // Add the new thumbnail at the top
             productGrid.add(thumbnailView, 0, 0);
+
+            // update grand total when amount changes
+            controller.displayName.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                updateTotal();
+            });
+            controller.plusButton.onMouseClickedProperty().addListener((observable, oldValue, newValue) -> {
+                updateTotal();
+            });
+            controller.minusButton.onMouseClickedProperty().addListener((observable, oldValue, newValue) -> {
+                updateTotal();
+            });
+            controller.displayAmount.textProperty().addListener((observable, oldValue, newValue) -> {
+                updateTotal();
+            });
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
+    @FXML
     public void updateTotal() {
-        GlobalData g = GlobalData.getInstance();
-        float total = 0;
-        for (String[] x : g.getCart()) {
-            Product product = g.getGlobalProduct(x[0]);
-            int count = Integer.parseInt(x[1]);
-            total += product.getPrice() * count;
+        try {
+            float total = 0;
+            for (CartThumbnailViewController thumbnail : thumbnails) {
+                if (thumbnail.displayName.isSelected()) {
+                    total += thumbnail.getTotal();
+                }
+            }
+            final String totalText = String.format("TOTAL: P %,.2f", total);
+            displayGrandTotal.setText(totalText);
+        } catch (Exception e) {
+            System.out.println("Total updated");
         }
-        final String totalText = String.format("TOTAL: P %,.2f", total);
-        Platform.runLater(() -> {
-            System.out.println("Setting text on JavaFX Application Thread");
-            displayTotal.setText(totalText);
-        });
     }
 
     /** moving between screens **/

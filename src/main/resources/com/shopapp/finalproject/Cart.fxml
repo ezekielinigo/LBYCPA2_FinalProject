@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.CartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.CartController">
   <center>
     <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@design.css" BorderPane.alignment="CENTER">
       <content>
@@ -106,7 +106,7 @@
             </CheckBox>
             <AnchorPane prefHeight="35.0" prefWidth="236.0" styleClass="button">
                <children>
-                  <TextField fx:id="displayTotal" editable="false" layoutX="15.0" layoutY="8.0" prefHeight="25.0" prefWidth="164.0" text="TOTAL: " />
+                  <TextField fx:id="displayGrandTotal" editable="false" layoutX="15.0" layoutY="8.0" prefHeight="25.0" prefWidth="164.0" text="TOTAL: P 0.00" />
                </children>
             </AnchorPane>
             <Button mnemonicParsing="false" onAction="#checkOut" prefHeight="30.0" prefWidth="220.0" styleClass="impt-button" text="CHECK OUT" />

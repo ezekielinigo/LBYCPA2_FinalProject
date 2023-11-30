@@ -7,7 +7,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class CartThumbnailViewController extends CartController{
@@ -58,10 +57,10 @@ public class CartThumbnailViewController extends CartController{
     private ImageView image;
 
     @FXML
-    private Button plusButton;
+    Button plusButton;
 
     @FXML
-    private Button minusButton;
+    Button minusButton;
 
     @FXML
     void editAmount(ActionEvent event) {
@@ -119,6 +118,10 @@ public class CartThumbnailViewController extends CartController{
     @FXML
     public void setChecked() {
         updateTotal();
+    }
+
+    public float getTotal() {
+        return amount * price;
     }
 
 }
