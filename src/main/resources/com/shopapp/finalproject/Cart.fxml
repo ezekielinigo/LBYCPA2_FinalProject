@@ -107,7 +107,7 @@
             </CheckBox>
             <AnchorPane prefHeight="35.0" prefWidth="236.0" styleClass="button">
                <children>
-                  <Label fx:id="displayTotal" layoutX="6.0" layoutY="11.0" prefHeight="17.0" prefWidth="138.0" text="TOTAL: " />
+                  <Label fx:id="displayTotal" layoutX="6.0" layoutY="11.0" prefHeight="17.0" prefWidth="170.0" text="TOTAL: " />
                </children>
             </AnchorPane>
             <Button mnemonicParsing="false" onAction="#checkOut" prefHeight="30.0" prefWidth="220.0" styleClass="impt-button" text="CHECK OUT" />

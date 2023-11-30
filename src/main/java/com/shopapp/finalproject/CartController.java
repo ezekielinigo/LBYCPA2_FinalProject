@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -24,6 +25,9 @@ public class CartController extends BaseController{
 
     @FXML
     private TextField searchBar;
+
+    @FXML
+    private Label displayTotal;
 
     public void setup() {
         GlobalData g = GlobalData.getInstance();
@@ -70,6 +74,21 @@ public class CartController extends BaseController{
 
     }
 
+    public void updateTotal() {
+        GlobalData g = GlobalData.getInstance();
+        float total = 0;
+        for (String[] x : g.getCart()) {
+            Product product = g.getGlobalProduct(x[0]);
+            int count = Integer.parseInt(x[1]);
+            total += product.getPrice() * count;
+        }
+        final String totalText = String.format("TOTAL: P %,.2f", total);
+        Platform.runLater(() -> {
+            System.out.println("Setting text on JavaFX Application Thread");
+            displayTotal.setText(totalText);
+        });
+    }
+
     /** moving between screens **/
     @FXML
     void gotoCart() {
@@ -105,9 +124,9 @@ public class CartController extends BaseController{
         }
         for (CartThumbnailViewController x : thumbnails) {
             if (check)
-                x.displayName.setSelected(true);
+                x.setChecked(true);
             else
-                x.displayName.setSelected(false);
+                x.setChecked(false);
         }
     }
 
@@ -121,6 +140,9 @@ public class CartController extends BaseController{
                 checkoutCart.add(new String[]{x.product.getName(), x.displayAmount.getText()});
             }
         }
+
+        if (checkoutCart.isEmpty())
+            return;
 
         // open Checkout.fxml in a new window
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Checkout.fxml"));
@@ -155,7 +177,6 @@ public class CartController extends BaseController{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 }

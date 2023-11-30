@@ -111,5 +111,14 @@ public class CartThumbnailViewController extends CartController{
         super.gotoProductDetail(product, (Stage) image.getScene().getWindow(), "cart", null);
     }
 
+    public void setChecked(boolean x) {
+        displayName.setSelected(x);
+        updateTotal();
+    }
+
+    @FXML
+    public void setChecked() {
+        updateTotal();
+    }
 
 }

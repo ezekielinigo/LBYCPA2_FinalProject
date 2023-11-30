@@ -28,7 +28,7 @@
             <Font name="Monospaced Regular" size="13.0" />
          </font>
       </Label>
-      <CheckBox fx:id="displayName" layoutX="194.0" layoutY="13.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="400.0" styleClass="font-style" text="Name">
+      <CheckBox fx:id="displayName" layoutX="194.0" layoutY="13.0" mnemonicParsing="false" onAction="#setChecked" prefHeight="32.0" prefWidth="400.0" styleClass="font-style" text="Name">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
