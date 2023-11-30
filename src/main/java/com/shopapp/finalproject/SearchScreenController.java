@@ -3,62 +3,43 @@ package com.shopapp.finalproject;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URL;
-import java.util.*;
-import java.util.function.BiConsumer;
 
-public class HistoryController extends BaseController {
+public class SearchScreenController extends BaseController {
 
     @FXML
     private GridPane productGrid;
+
     @FXML
     private TextField searchBar;
 
-    public void setup() {
+    public void setup(String searchQuery) {
         GlobalData g = GlobalData.getInstance();
+        g.setRelevantResults(searchQuery);
 
         Platform.runLater(() -> {
             Stage stage = (Stage) productGrid.getScene().getWindow();
             String prevScreenType = "home";
             String prevScreenIdentifier = null;
 
-            Map<String, Object> uniqueElements = new LinkedHashMap<>();
-
-            for (int i = g.historyList.size() - 1; i >= 0; i--) {
-                String[] name = g.historyList.get(i);
-                String key = name[0] + "-" + name[1]; // Create a unique key for each item
-
-                if (name[0].equals("product")) {
-                    Product product = g.getGlobalProduct(name[1]);
-                    uniqueElements.put(key, product);
-                } else if (name[0].equals("seller")) {
-                    Seller seller = g.getGlobalSeller(name[1]);
-                    uniqueElements.put(key, seller);
-                }
+            for (Product product : g.getRelevantProducts()) {
+                addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
+                        (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
             }
 
-            for (Object item : uniqueElements.values()) {
-                if (item instanceof Product) {
-                    addThumbnail("ThumbnailView.fxml", (Product) item, stage, prevScreenType, prevScreenIdentifier,
-                            (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
-                } else if (item instanceof Seller) {
-                    addThumbnail("ThumbnailView.fxml", (Seller) item, stage, prevScreenType, prevScreenIdentifier,
-                            (s, st, pT, pI) -> gotoSellerDetail(s, st, pT, pI));
-                }
+            for (Seller seller : g.getRelevantSellers()) {
+                addThumbnail("ThumbnailView.fxml", seller, stage, prevScreenType, prevScreenIdentifier,
+                        (s, st, pT, pI) -> gotoSellerDetail(s, st, pT, pI));
             }
-
         });
     }
 
@@ -93,8 +74,8 @@ public class HistoryController extends BaseController {
 
 
     @FXML
-    void gotoCart(MouseEvent event) throws IOException {
-
+    void gotoCart() throws IOException {
+        super.gotoCart((Stage) productGrid.getScene().getWindow(), "home", null);
     }
 
     @FXML
@@ -140,7 +121,7 @@ public class HistoryController extends BaseController {
 
     @FXML
     void gotoHistoryScreen() {
-        super.gotoHistory((Stage) productGrid.getScene().getWindow());
+        super.gotoHistory((Stage) productGrid.getScene().getWindow(), "home", null);
     }
 
 

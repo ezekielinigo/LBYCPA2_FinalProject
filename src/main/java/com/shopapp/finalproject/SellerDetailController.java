@@ -171,7 +171,7 @@ public class SellerDetailController extends BaseController{
 
     @FXML
     void gotoSearchResults() {
-
+        super.gotoSearchScreen((Stage) searchBar.getScene().getWindow(), "home", null, searchBar.getText());
     }
 
 }

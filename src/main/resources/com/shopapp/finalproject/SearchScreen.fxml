@@ -15,17 +15,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.HomeScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shopapp.finalproject.SearchScreenController">
   <center>
     <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@design.css" BorderPane.alignment="CENTER">
       <content>
         <VBox prefHeight="768.0" prefWidth="600.0" styleClass="home-style">
           <children>
-            <ImageView fitHeight="204.0" fitWidth="586.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../../../images/icons/appbanner.png" />
-              </image>
-            </ImageView>
             <GridPane fx:id="productGrid" prefHeight="600.0" prefWidth="600.0" styleClass="productGrid">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
@@ -69,12 +64,12 @@
             </ImageView>
           </graphic>
         </Button>
-        <TextField fx:id="searchBar" prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
+        <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
                <styleClass>
                   <String fx:value="font-style" />
                   <String fx:value="button" />
                </styleClass></TextField>
-        <Button fx:id="searchButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#gotoSearchResults" onMouseClicked="#gotoSearchResults" prefHeight="30.0" prefWidth="0.0" text="Search">
+        <Button fx:id="searchButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#gotoSearchResults" prefHeight="30.0" prefWidth="0.0" text="Search">
           <graphic>
             <ImageView fitHeight="24.0" fitWidth="22.0" mouseTransparent="true" onMouseClicked="#gotoSearchResults" pickOnBounds="true" preserveRatio="true">
               <image>
