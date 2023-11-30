@@ -56,7 +56,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
+                <TextField fx:id="searchBar" prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
                <styleClass>
                   <String fx:value="button" />
                   <String fx:value="font-style" />

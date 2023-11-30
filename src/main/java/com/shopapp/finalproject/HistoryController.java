@@ -7,13 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -95,11 +94,11 @@ public class HistoryController extends BaseController {
 
     @FXML
     void gotoCart(MouseEvent event) throws IOException {
-
+        super.gotoCart((Stage) productGrid.getScene().getWindow(), "history", null);
     }
 
     @FXML
-    void gotoSearchResults(MouseEvent event) {
+    void gotoSearchResults() {
         super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "search", searchBar.getText());
     }
 
