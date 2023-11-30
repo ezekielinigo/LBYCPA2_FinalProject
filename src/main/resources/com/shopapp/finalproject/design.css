@@ -1,6 +1,6 @@
-@font-face {
+@font-face {/
     font-family: 'Comfortaa';
-    src: url('font/Comfortaa.ttf');
+    src: url("../../../font/Comfortaa.ttf");
 }
 
 .font-style {
