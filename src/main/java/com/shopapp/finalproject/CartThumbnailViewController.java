@@ -7,17 +7,36 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class CartThumbnailViewController extends CartController{
 
+    Product product;
+    float price;
+    Seller seller;
+    int amount;
+    int stock;
+
+
     public void setup(Product product, int count) {
-        displayAmount.setText(""+count);
+        this.product = product;
+        this.price = product.getPrice();
+        this.seller = product.getSeller();
+        this.stock = product.getStock();
+        this.amount = count;
+
+        displayAmount.setText(String.valueOf(amount));
         displayName.setText(product.getName());
-        displayPrice.setText(String.format("P %,.2f", product.getPrice()));
-        displayStock.setText("Stock: "+product.getStock());
-        displayTotal.setText(String.format("P %,.2f", Float.parseFloat(displayAmount.getText()) * count));
+        displayPrice.setText(String.format("P %,.2f", price));
+        displayStock.setText("Stock: "+stock);
+        displayTotal.setText(String.format("TOTAL: P %,.2f", amount * price));
         image.setImage(product.getImage());
+
+        displayAmount.textProperty().addListener((observable, oldValue, newValue) ->{
+            editAmount(new ActionEvent());
+        });
+
     }
 
     @FXML
@@ -50,25 +69,36 @@ public class CartThumbnailViewController extends CartController{
     @FXML
     void editAmount(ActionEvent event) {
         try {
-            if (event.getSource() == plusButton) {
-                int amount = Integer.parseInt(displayAmount.getText());
+            if (event.getSource() == plusButton && amount < product.getStock())
                 amount++;
-                displayAmount.setText("" + amount);
-            }else if (event.getSource() == minusButton) {
-                int amount = Integer.parseInt(displayAmount.getText());
+            else if (event.getSource() == minusButton && amount > 1)
                 amount--;
-                displayAmount.setText("" + amount);
+            else{
+                if (Integer.parseInt(displayAmount.getText()) > product.getStock())
+                    amount = stock;
+                else if (Integer.parseInt(displayAmount.getText()) < 1)
+                    amount = 1;
+                else
+                    amount = Integer.parseInt(displayAmount.getText());
             }
-            float price = Float.parseFloat(displayAmount.getText()) * Float.parseFloat(displayPrice.getText().substring(2));
-            displayTotal.setText(String.format("P %,.2f", price));
-        }catch (Exception e) {
+            displayAmount.setText(String.valueOf(amount));
+            displayTotal.setText(String.format("TOTAL: P %,.2f", amount * price));
+        } catch (Exception e) {
             displayAmount.setText("1");
+        }
+    }
+
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
     @FXML
     void gotoSeller() {
-        Seller seller = GlobalData.getInstance().getGlobalSeller(displayName.getText());
         super.gotoSellerDetail(seller, (Stage) image.getScene().getWindow(), "cart", null);
     }
 
@@ -79,7 +109,6 @@ public class CartThumbnailViewController extends CartController{
 
     @FXML
     void gotoProduct() {
-        Product product = GlobalData.getInstance().getGlobalProduct(displayName.getText());
         super.gotoProductDetail(product, (Stage) image.getScene().getWindow(), "cart", null);
     }
 

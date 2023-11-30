@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class CartController extends BaseController{
 
+    Stage currentStage;
+
     @FXML
     private GridPane productGrid;
 
@@ -22,6 +24,8 @@ public class CartController extends BaseController{
             int count = Integer.parseInt(x[1]);
             addThumbnail(product, count);
         }
+
+        currentStage = (Stage) productGrid.getScene().getWindow();
     }
 
     private void addThumbnail(Product product, int count) {
@@ -42,20 +46,20 @@ public class CartController extends BaseController{
 
     }
 
-    /** ano tawag pag lilipat ng screen **/
+    /** moving between screens **/
     @FXML
     void gotoCart() {
-
+        super.gotoCart(currentStage, "cart", null);
     }
 
     @FXML
     void gotoHistoryScreen() {
-
+        super.gotoHistory(currentStage, "cart", null);
     }
 
     @FXML
     void gotoPreviousScreen() {
-
+        super.gotoPrevious(currentStage);
     }
 
     @FXML

@@ -129,12 +129,13 @@ public class BaseController {
                 gotoHistory(stage);
             } else if (screenType.equals("home")) {
                 gotoHome(stage);
+            } else if (screenType.equals("cart")) {
+                gotoCart(stage);
             }
 
-        } catch (Exception e) {
+        }catch(Exception e){
             gotoHome(stage); // handle if history is empty
         }
-
     }
 
     /**
@@ -202,5 +203,19 @@ public class BaseController {
             e.printStackTrace();
         }
     }
+
+    protected void gotoCart(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("Cart.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+
+            CartController controller = fxmlLoader.getController();
+            controller.setup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
