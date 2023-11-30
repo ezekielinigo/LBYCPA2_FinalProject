@@ -24,26 +24,9 @@ public class SearchScreenController extends BaseController {
     @FXML
     private TextField searchBar;
 
-    public void setup(String searchQuery) {
-        this.searchQuery = searchQuery;
-        GlobalData g = GlobalData.getInstance();
-        g.setRelevantResults(searchQuery);
-
-        Platform.runLater(() -> {
-            Stage stage = (Stage) productGrid.getScene().getWindow();
-            String prevScreenType = "search";
-            String prevScreenIdentifier = searchQuery;
-
-            for (Product product : g.getRelevantProducts()) {
-                addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
-                        (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
-            }
-
-            for (Seller seller : g.getRelevantSellers()) {
-                addThumbnail("ThumbnailView.fxml", seller, stage, prevScreenType, prevScreenIdentifier,
-                        (s, st, pT, pI) -> gotoSellerDetail(s, st, pT, pI));
-            }
-        });
+    public void setup(String initialSearchQuery) {
+        this.searchQuery = initialSearchQuery;
+        performSearch();
     }
 
     @FunctionalInterface
@@ -54,7 +37,7 @@ public class SearchScreenController extends BaseController {
     private <T> void addThumbnail(String fxmlFile, T item, Stage stage, String prevScreenType, String prevScreenIdentifier,
                                   QuadConsumer<T, Stage, String, String> detailHandler) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/shopapp/finalproject/" + fxmlFile));
             AnchorPane thumbnailView = loader.load();
             ThumbnailViewController controller = loader.getController();
 
@@ -74,7 +57,32 @@ public class SearchScreenController extends BaseController {
         }
     }
 
+    private void performSearch() {
+        GlobalData g = GlobalData.getInstance();
+        g.setRelevantResults(searchQuery);
 
+        Platform.runLater(() -> {
+            // Clear existing items in the grid
+            if (productGrid != null) {
+                productGrid.getChildren().clear();
+            }
+
+            Stage stage = (Stage) productGrid.getScene().getWindow();
+            String prevScreenType = "search";
+            String prevScreenIdentifier = searchQuery;
+
+            // Add new items based on the current search query
+            for (Product product : g.getRelevantProducts()) {
+                addThumbnail("ThumbnailView.fxml", product, stage, prevScreenType, prevScreenIdentifier,
+                        (p, s, pT, pI) -> gotoProductDetail(p, s, pT, pI));
+            }
+
+            for (Seller seller : g.getRelevantSellers()) {
+                addThumbnail("ThumbnailView.fxml", seller, stage, prevScreenType, prevScreenIdentifier,
+                        (s, st, pT, pI) -> gotoSellerDetail(s, st, pT, pI));
+            }
+        });
+    }
 
     @FXML
     void gotoCart() throws IOException {
@@ -83,8 +91,11 @@ public class SearchScreenController extends BaseController {
 
     @FXML
     void gotoSearchResults(MouseEvent event) {
-        super.gotoSearchScreen((Stage) productGrid.getScene().getWindow(), "search", searchQuery);
+        // Update the searchQuery before performing a new search
+        searchQuery = searchBar.getText();
+        performSearch();
     }
+
 
     private Point2D getNextAvailablePosition(GridPane gridPane) {
         int numColumns = gridPane.getColumnConstraints().size();

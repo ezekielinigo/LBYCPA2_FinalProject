@@ -21,6 +21,11 @@
       <content>
         <VBox prefHeight="768.0" prefWidth="600.0" styleClass="home-style">
           <children>
+                  <ImageView fitHeight="204.0" fitWidth="586.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/searchbanner.png" />
+                     </image>
+                  </ImageView>
             <GridPane fx:id="productGrid" prefHeight="600.0" prefWidth="600.0" styleClass="productGrid">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
@@ -64,7 +69,7 @@
             </ImageView>
           </graphic>
         </Button>
-        <TextField prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
+        <TextField fx:id="searchBar" prefHeight="87.0" prefWidth="525.0" promptText="Search for a product...">
                <styleClass>
                   <String fx:value="font-style" />
                   <String fx:value="button" />

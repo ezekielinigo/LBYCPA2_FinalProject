@@ -12,7 +12,7 @@ public class ShopApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ShopApp.class.getResource("HomeScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("the better shopee");
+        stage.setTitle("Chan Store");
         stage.setScene(scene);
         stage.show();
         HomeScreenController controller = fxmlLoader.getController();
