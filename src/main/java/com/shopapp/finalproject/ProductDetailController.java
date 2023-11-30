@@ -13,13 +13,29 @@ import javafx.stage.Stage;
 
 public class ProductDetailController extends BaseController{
 
+    Product product;
+    Seller seller;
+    int amount;
+    int stock;
+    float price;
+
     public void setup(Product product) {
+        this.product = product;
+        this.seller = product.getSeller();
+        this.amount = 1;
+        this.stock = product.getStock();
+        this.price = product.getPrice();
+
         displayName.setText(product.getName());
-        displayPrice.setText(String.format("P %,.2f", product.getPrice()));
+        displayPrice.setText(String.format("P %,.2f", price));
         displayImage.setImage(product.getImage());
         displayDescription.setText(product.getName()+"\n\n"+product.getDescription());
-        displaySeller.setText(product.getSeller().getName());
-        displayStock.setText("stock: "+String.valueOf(product.getStock()));
+        displaySeller.setText(seller.getName());
+        displayStock.setText("stock: "+stock);
+
+        displayAmount.textProperty().addListener((observable, oldValue, newValue) ->{
+            editAmount(new ActionEvent());
+        });
     }
 
     @FXML
@@ -74,17 +90,24 @@ public class ProductDetailController extends BaseController{
 
     @FXML
     void editAmount(ActionEvent event) {
-        // plus and minus button uses the same method
+        // plus, minus, and textfield uses the same method
         try {
-            if (event.getSource() == plusButton) {
-                displayAmount.setText(String.valueOf(Integer.parseInt(displayAmount.getText()) + 1));
-            } else if (event.getSource() == minusButton) {
-                if (Integer.parseInt(displayAmount.getText()) > 1)
-                    displayAmount.setText(String.valueOf(Integer.parseInt(displayAmount.getText()) - 1));
+            if (event.getSource() == plusButton && amount < stock)
+                amount++;
+            else if (event.getSource() == minusButton && amount > 1)
+                amount--;
+            else {
+                if (Integer.parseInt(displayAmount.getText()) > stock)
+                    amount = stock;
+                else if (Integer.parseInt(displayAmount.getText()) < 1)
+                    amount = 1;
+                else
+                    amount = Integer.parseInt(displayAmount.getText());
             }
+            displayAmount.setText(String.valueOf(amount));
             displayRemark.setText("");
         }catch (Exception e) {
-            displayRemark.setText("Please enter a valid amount");
+            displayAmount.setText("1");
         }
     }
 
