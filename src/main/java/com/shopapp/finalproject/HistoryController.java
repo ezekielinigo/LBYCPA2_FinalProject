@@ -34,6 +34,7 @@ public class HistoryController extends BaseController {
             String prevScreenType = "home";
             String prevScreenIdentifier = null;
 
+
             Map<String, Object> uniqueElements = new LinkedHashMap<>();
 
             for (int i = g.historyList.size() - 1; i >= 0; i--) {
