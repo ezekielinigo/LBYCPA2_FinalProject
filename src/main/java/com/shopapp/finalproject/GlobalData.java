@@ -3,13 +3,8 @@ package com.shopapp.finalproject;
 import com.shopapp.finalproject.DataStructs.Graph;
 import com.shopapp.finalproject.DataStructs.Queue;
 import com.shopapp.finalproject.DataStructs.Stack;
-import javafx.scene.Scene;
-
 import java.io.*;
 import java.util.*;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class GlobalData {

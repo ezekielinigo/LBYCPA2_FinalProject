@@ -7,6 +7,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * DATASTRUCTURES:
+ * GRAPH - used to store the relationships between sellers (initializeData())
+ * STACK - used to store the history of visited pages
+ * QUEUE - used to store the relevant tags
+ * LIST - used all throughout the project for general storage use
+ * **/
+
 public class ShopApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
