@@ -295,15 +295,16 @@ public class GlobalData {
 
     public void addToHistory(String type, String identifier) {
         String[] history = new String[]{type, identifier};
-        historyList.add(history);
         historyStack.push(history);
+        if (historyList.contains(history)) {
+            historyList.remove(history);
+        }
+        historyList.add(history);
     }
 
     public String[] popHistory() {
         if (!historyStack.isEmpty()) {
-            String[] prevScreen = historyStack.pop();
-            historyList.remove(historyList.size() - 1);
-            return prevScreen;
+            return historyStack.pop();
         }else
             return new String[]{"home", null};
 
